@@ -23,7 +23,8 @@ public class OrderQrCodeController implements OrderQrCodeAPI {
     }
 
     @Override
-    public ResponseEntity<OrderQrCodeResponse> createOrderQrCode(String authorization, CreateOrderQrCodeRequest request, String userId, String externalPosId) {
+    public ResponseEntity<OrderQrCodeResponse> createOrderQrCode(String authorization, CreateOrderQrCodeRequest request,
+                                                                 String userId, String externalPosId) {
         OrderQrCodeResponse response;
 
         var items = OrderQrCodeItemApiPresenter.present(request.items());
