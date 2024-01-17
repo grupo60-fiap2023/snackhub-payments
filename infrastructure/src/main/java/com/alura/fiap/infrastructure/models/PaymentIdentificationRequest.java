@@ -9,6 +9,6 @@ public record PaymentIdentificationRequest(
         String type,
 
         // TODO Add validação CPF
-        @JsonProperty("number") @NotNull @Schema(description = "Apenas Numeros CPF", example = "12345678900")
+        @JsonProperty("number") @NotNull @Schema(description = "Apenas Numeros CPF", example = "12345678909")
         String number) {
 }

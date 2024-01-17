@@ -1,7 +1,7 @@
 package com.alura.fiap.infrastructure.configuration.usecases;
 
 
-import com.alura.fiap.application.create.CreateCardTokeUseCase;
+import com.alura.fiap.application.create.CreateCardTokenUseCase;
 import com.alura.fiap.domain.payments.CardTokenGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class CardTokenUseCaseConfig {
     }
 
     @Bean
-    public CreateCardTokeUseCase createCardTokeUseCase(){
-        return new CreateCardTokeUseCase(cardTokenGateway);
+    public CreateCardTokenUseCase createCardTokeUseCase(){
+        return new CreateCardTokenUseCase(cardTokenGateway);
     }
 }

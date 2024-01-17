@@ -1,6 +1,6 @@
 package com.alura.fiap.application.create;
 
-import com.alura.fiap.application.AuthMPUseCase;
+import com.alura.fiap.application.AuthCardTokenMPUseCase;
 import com.alura.fiap.application.CardTokenOutput;
 import com.alura.fiap.domain.payments.CardTokenGateway;
 import com.alura.fiap.domain.payments.CreateCardToken;
@@ -9,11 +9,11 @@ import com.alura.fiap.domain.payments.CardHolder;
 
 import java.util.Objects;
 
-public class CreateCardTokeUseCase extends AuthMPUseCase<CreateCardTokenCommand, CardTokenOutput> {
+public class CreateCardTokenUseCase extends AuthCardTokenMPUseCase<CreateCardTokenCommand, CardTokenOutput> {
 
     private final CardTokenGateway cardTokenGateway;
 
-    public CreateCardTokeUseCase(CardTokenGateway cardTokenGateway) {
+    public CreateCardTokenUseCase(CardTokenGateway cardTokenGateway) {
         this.cardTokenGateway = Objects.requireNonNull(cardTokenGateway);
     }
 

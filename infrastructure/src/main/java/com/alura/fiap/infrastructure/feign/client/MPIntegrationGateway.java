@@ -4,7 +4,9 @@ import com.alura.fiap.infrastructure.configuration.FeignConfig;
 import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
 import com.alura.fiap.infrastructure.models.PaymentCreateCardTokenRequest;
+import com.alura.fiap.infrastructure.models.PaymentCreateRequest;
 import com.mercadopago.resources.CardToken;
+import com.mercadopago.resources.payment.Payment;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,10 @@ public interface MPIntegrationGateway {
     ResponseEntity<CardToken> createCardToken(@RequestHeader("Authorization") String authorization,
                                               @RequestBody PaymentCreateCardTokenRequest paymentCreateCardTokenRequest,
                                               @RequestParam String publicKey);
+
+    @PostMapping(value = "/v1/payments")
+    ResponseEntity<Payment> createPayment(@RequestHeader("Authorization") String authorization,
+                                          @RequestBody PaymentCreateRequest paymentCreateCardTokenRequest);
 
 
 }
