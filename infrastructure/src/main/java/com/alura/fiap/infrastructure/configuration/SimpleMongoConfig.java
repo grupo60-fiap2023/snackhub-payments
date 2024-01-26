@@ -13,7 +13,7 @@ public class SimpleMongoConfig {
 
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://marlonfcosta90:MBFUnCFdmBFOUngz@clustersnackhubpay.tenwcib.mongodb.net/");
+        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/snackhubpaytest");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
@@ -23,6 +23,6 @@ public class SimpleMongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongo(), "snackhubpay");
+        return new MongoTemplate(mongo(), "snackhubpaytest");
     }
 }
