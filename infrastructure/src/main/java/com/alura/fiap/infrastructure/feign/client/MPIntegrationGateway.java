@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(value = "mp", url = "${mp.url}", configuration = FeignConfig.class
-)
+@FeignClient(value = "mp", url = "${mp.url}", configuration = FeignConfig.class)
 public interface MPIntegrationGateway {
 
     @PostMapping(value = "/instore/orders/qr/seller/collectors/{userId}/pos/{externalPosId}/qrs")
@@ -19,5 +18,4 @@ public interface MPIntegrationGateway {
                                                           @RequestBody CreateOrderQrCodeRequest request,
                                                           @PathVariable String userId,
                                                           @PathVariable String externalPosId);
-
 }

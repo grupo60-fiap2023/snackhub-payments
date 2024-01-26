@@ -2,24 +2,24 @@ package com.alura.fiap.infrastructure.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-
 import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public record CreateOrderQrCodeRequest(
-        @JsonProperty("external_reference") @Schema(description = "Id da Ordem", example = "1")
+        @JsonProperty("external_reference") @Schema(description = "Referencia do pedido", example = "aWRfcGVkaWRv")
         String externalReference,
-        @JsonProperty("title") @Schema(description = "Titulo da Ordem", example = "Product order 1 create QRCODE - test MP")
+        @JsonProperty("title") @Schema(description = "Titulo da Pedido", example = "Product Order aWRfcGVkaWRv")
         String title,
-        @JsonProperty("notification_url") @Schema(description = "URL para notificação com os dados do merchant_order", example = "https://webhook.site/2e9b0370-b95e-467b-8fdc-a42bd6a087e2")
-        String notificationUrl,
-        @JsonProperty("total_amount") @NotNull @Schema(description = "Valor total da Ordem", example = "35.99")
-        Double totalAmount,
-        @JsonProperty("items") @NotNull @Schema(description = "Lista com os items da Ordem")
+        @JsonProperty("items") @NotNull @Schema(description = "Lista dos items do pedido")
         List<OrderQrCodeItemsRequest> items,
-        @JsonProperty("cash_out") @NotNull @Schema(description = "Valor troco")
+        @JsonProperty("total_amount") @NotNull @Schema(description = "Valor total do pedido", example = "29.05")
+        Double totalAmount,
+        @JsonProperty("cash_out") @NotNull @Schema(description = "Valor de troco")
         OrderQrCodeCashOutRequest cashOut,
-        @JsonProperty("description") @NotNull @Schema(description = "Descrição da Ordem", example = "Product order create QRCODE - test MP")
+        @JsonProperty("notification_url") @Schema(description = "URL webhook notification", example = "https://snackhubpay-mercadopago.ultrahook.com")
+        String notificationUrl,
+        @JsonProperty("description") @NotNull @Schema(description = "Descrição do pedido", example = "Combo+Refil")
         String description
 ) {
 }
