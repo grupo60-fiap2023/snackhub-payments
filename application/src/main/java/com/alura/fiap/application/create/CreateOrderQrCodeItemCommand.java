@@ -2,36 +2,24 @@ package com.alura.fiap.application.create;
 
 public record CreateOrderQrCodeItemCommand(
 
-        String id,
-        String skuNumber,
-        String category,
         String title,
-        String description,
+        String unitMeasure,
         Double unitPrice,
         Integer quantity,
-        String unitMeasure,
         Double totalAmount) {
 
     public static CreateOrderQrCodeItemCommand with(
-            final String id,
-            final String skuNumber,
-            final String category,
             final String title,
-            final String description,
+            final String unitMeasure,
             final Double unitPrice,
             final Integer quantity,
-            final String unitMeasure,
             final Double totalAmount
     ) {
         return new CreateOrderQrCodeItemCommand(
-                id,
-                skuNumber,
-                category,
                 title,
-                description,
+                unitMeasure,
                 unitPrice,
                 quantity,
-                unitMeasure,
                 totalAmount
         );
     }

@@ -1,4 +1,4 @@
- package com.alura.fiap.infrastructure.presenters;
+package com.alura.fiap.infrastructure.presenters;
 
 import com.alura.fiap.application.OrderQrCodeOutput;
 import com.alura.fiap.application.create.CreateOrderQrCodeItemCommand;
@@ -12,14 +12,10 @@ public interface OrderQrCodeItemApiPresenter {
     static List<CreateOrderQrCodeItemCommand> present(List<OrderQrCodeItemsRequest> itemsRequest) {
         return itemsRequest.stream().map(
                         itemRequest -> CreateOrderQrCodeItemCommand.with(
-                                itemRequest.id(),
-                                itemRequest.skuNumber(),
-                                itemRequest.category(),
                                 itemRequest.title(),
-                                itemRequest.description(),
+                                itemRequest.unitMeasure(),
                                 itemRequest.unitPrice(),
                                 itemRequest.quantity(),
-                                itemRequest.unitMeasure(),
                                 itemRequest.totalAmount()
                         ))
                 .toList();
