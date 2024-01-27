@@ -3,7 +3,12 @@ package com.alura.fiap.infrastructure.gateway;
 import com.alura.fiap.domain.payments.MerchantOrder;
 import com.alura.fiap.domain.payments.MerchantOrderPaymentGateway;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
 
 @Component
 public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway {
@@ -13,7 +18,6 @@ public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway 
     public MerchantOrderMongoDBGateway(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
-
 
 
     @Override
@@ -26,7 +30,9 @@ public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway 
         this.mongoTemplate.remove(merchantOrder);
     }
 
-    public MerchantOrder findMerchantOrderPayment(Long id) {
-        return this.mongoTemplate.findById(id, MerchantOrder.class);
+    public Optional<List<MerchantOrder>> findMerchantOrderPaymentByExternalReference(String externalReference) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("externalReference").is(externalReference));
+        return Optional.of(this.mongoTemplate.find(query, MerchantOrder.class));
     }
 }

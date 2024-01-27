@@ -2,7 +2,7 @@ package com.alura.fiap.infrastructure.configuration.usecases;
 
 
 import com.alura.fiap.application.create.MerchantOrderPaymentUseCase;
-import com.alura.fiap.application.receive.FindMerchantOrderByIdUseCase;
+import com.alura.fiap.application.receive.FindMerchantOrderByExternalReferenceUseCase;
 import com.alura.fiap.domain.payments.MerchantOrderPaymentGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class MerchantOrderUseCaseConfig {
     }
 
     @Bean
-    public FindMerchantOrderByIdUseCase findMerchantOrderByIdUseCase() {
-        return new FindMerchantOrderByIdUseCase(merchantOrderPaymentGateway);
+    public FindMerchantOrderByExternalReferenceUseCase findMerchantOrderByIdUseCase() {
+        return new FindMerchantOrderByExternalReferenceUseCase(merchantOrderPaymentGateway);
     }
 }

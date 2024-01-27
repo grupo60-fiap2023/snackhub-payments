@@ -1,12 +1,12 @@
 package com.alura.fiap.infrastructure.persistence;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
-import com.alura.fiap.domain.payments.Payment;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Document
@@ -17,27 +17,27 @@ public class DocumentMerchantOrder {
     private final Long orderId;
     private final String status;
     private final String externalReference;
-    private final List<Payment> payment;
+    private final List<DocumentPayment> documentPayments;
     private final String notificationUrl;
     private BigDecimal totalAmount;
 
     public DocumentMerchantOrder(Long orderId,
                                  String status,
                                  String externalReference,
-                                 List<Payment> payment,
+                                 List<DocumentPayment> documentPayments,
                                  String notificationUrl,
                                  BigDecimal totalAmount) {
         this.orderId = orderId;
         this.status = status;
         this.externalReference = externalReference;
-        this.payment = payment;
+        this.documentPayments = documentPayments;
         this.notificationUrl = notificationUrl;
         this.totalAmount = totalAmount;
     }
 
     public static DocumentMerchantOrder create(final MerchantOrder merchantOrder) {
         return new DocumentMerchantOrder(merchantOrder.orderId(), merchantOrder.status(), merchantOrder.externalReference(),
-                merchantOrder.payment(), merchantOrder.notificationUrl(), merchantOrder.totalAmount());
+                new ArrayList<>(), merchantOrder.notificationUrl(), merchantOrder.totalAmount());
     }
 
     public Long getOrderId() {
@@ -52,8 +52,8 @@ public class DocumentMerchantOrder {
         return externalReference;
     }
 
-    public List<Payment> getPayment() {
-        return payment;
+    public List<DocumentPayment> getDocumentPayments() {
+        return documentPayments;
     }
 
     public String getNotificationUrl() {
