@@ -1,21 +1,22 @@
-#
-# Build stage
-#
-FROM maven:3.6.0-jdk-11-slim AS build
+# Use an official Maven image as the base image
+FROM maven:3.8.4-openjdk-17-slim AS build
 
-WORKDIR /usr/app/
+# Set the working directory in the container
+WORKDIR /usr/app
 
 COPY . .
 
-RUN mvn -X -f /usr/app/pom.xml clean package
+# Build the application using Maven
+RUN mvn clean package -DskipTests
 
-#
-# Package stage
-#
-FROM eclipse-temurin:17-jdk-alpine
-COPY --from=build /usr/app/target/snackhub-payments /usr/local/lib/snackhub-payments.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/snackhub-payments.jar"]
+# Use an official OpenJDK image as the base image
+FROM eclipse-temurin:17.0.5_8-jre-alpine
 
+# Copy the built JAR file from the previous stage to the container
+COPY --from=build /usr/app/infrastructure/target/*.jar /opt/app/snackhubpay.jar
 
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
 
+# Set the command to run the application
+CMD java -jar /opt/app/snackhubpay.jar
