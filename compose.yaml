@@ -4,7 +4,7 @@ services:
   snackhubpay-mongodb:
     container_name: snackhubpay-mongodb
     restart: always
-    image: 'mongo:latest'
+    image: 'mongo:6.0.13'
     environment:
       - MONGO_INITDB_DATABASE=snackhubpay
       - MONGO_INITDB_ROOT_PASSWORD=root

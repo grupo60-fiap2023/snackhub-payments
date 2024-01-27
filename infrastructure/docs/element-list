@@ -1,9 +1,0 @@
-com.alura.fiap.infrastructure
-com.alura.fiap.infrastructure.api
-com.alura.fiap.infrastructure.api.controllers
-com.alura.fiap.infrastructure.configuration
-com.alura.fiap.infrastructure.configuration.usecases
-com.alura.fiap.infrastructure.feign.client
-com.alura.fiap.infrastructure.gateway
-com.alura.fiap.infrastructure.models
-com.alura.fiap.infrastructure.presenters
