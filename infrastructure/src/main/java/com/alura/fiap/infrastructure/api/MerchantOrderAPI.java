@@ -8,10 +8,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping(value = "merchant/orders")
 
@@ -26,6 +27,6 @@ public interface MerchantOrderAPI {
             @ApiResponse(responseCode = "404", description = "Not Found"),
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
-    ResponseEntity<Optional<List<MerchantOrder>>> receiveMerchantOrder(
+    ResponseEntity<List<MerchantOrder>> receiveMerchantOrder(
             @PathVariable @Schema(description = "Referência do pedido", example = "aWRfcGVkaWRv") String externalReference);
 }
