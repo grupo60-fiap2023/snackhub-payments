@@ -1,0 +1,76 @@
+name: SonarCloud
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'zulu' # Alternative distribution options are available
+      - name: Change wrapper permissions 🛡️
+        run: chmod +x ./mvnw
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven
+      - name: Build and analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=grupo60-fiap2023_snackhub-payments
+
+  deploy:
+    name: Deploy AWS
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17 🔧
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      - name: Change wrapper permissions 🛡️
+        run: chmod +x ./mvnw
+      - name: Build and analyze 🔍
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./mvnw clean install
+      - name: Configure AWS credentials 🔑
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.TF_VAR_AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.TF_VAR_AWS_SECRET_KEY }}
+
+      - name: Login to Amazon ECR Private 🔑🚪
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push docker image to Amazon ECR 🏗️
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ecr_repository
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) ${{ env.REGISTRY }}
+          docker build -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:snackhub_pay_${{ env.IMAGE_TAG }} -t ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:snackhub_pay_latest . -f Dockerfile
+          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:snackhub_pay_${{ env.IMAGE_TAG }}
+          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:snackhub_pay_latest
