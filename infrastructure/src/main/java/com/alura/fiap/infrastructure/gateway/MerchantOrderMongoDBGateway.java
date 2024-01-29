@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway {
@@ -30,9 +29,9 @@ public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway 
         this.mongoTemplate.remove(merchantOrder);
     }
 
-    public Optional<List<MerchantOrder>> findMerchantOrderPaymentByExternalReference(String externalReference) {
+    public List<MerchantOrder> findMerchantOrderPaymentByExternalReference(String externalReference) {
         Query query = new Query();
         query.addCriteria(Criteria.where("externalReference").is(externalReference));
-        return Optional.of(this.mongoTemplate.find(query, MerchantOrder.class));
+        return this.mongoTemplate.find(query, MerchantOrder.class);
     }
 }

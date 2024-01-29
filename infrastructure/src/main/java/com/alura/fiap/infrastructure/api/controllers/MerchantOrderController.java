@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class MerchantOrderController implements MerchantOrderAPI {
@@ -19,7 +18,7 @@ public class MerchantOrderController implements MerchantOrderAPI {
     }
 
     @Override
-    public ResponseEntity<Optional<List<MerchantOrder>>> receiveMerchantOrder(String externalReference) {
+    public ResponseEntity<List<MerchantOrder>> receiveMerchantOrder(String externalReference) {
         return ResponseEntity.ok(this.findMerchantOrderByExternalReferenceUseCase.execute(externalReference));
     }
 }

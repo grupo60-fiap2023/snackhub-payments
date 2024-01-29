@@ -2,8 +2,8 @@ mongodb:
   username: root
   password: root
   schema: snackhubpay
-  url: snackhubpay-mongodb
-  port: 27017
+  url: mongodb://localhost:27017/snackhubpay
+  #port: 27017
   #url: 127.0.0.1:3307
 
 server:

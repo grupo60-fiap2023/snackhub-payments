@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 public class DocumentPayment {
 
     @Id
-    private Long id;
     @Indexed(unique = true)
     private final Long paymentId;
     private final BigDecimal transactionAmount;
