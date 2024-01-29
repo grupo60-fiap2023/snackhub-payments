@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.alura.fiap.application.execeptions.HandlerException.handleException;
 
@@ -34,7 +34,7 @@ public class MerchantOrderPaymentUseCase {
     }
 
     public ResponseEntity<Object> execute(Long id, String topic) {
-        List<Payment> payments;
+        List<List<Payment>> payments;
         MerchantOrder merchantOrderResourceMP;
         try {
             if (StringUtils.equalsIgnoreCase(topic, MERCHANT_ORDER)) {
@@ -62,7 +62,7 @@ public class MerchantOrderPaymentUseCase {
         }
     }
 
-    private static com.alura.fiap.domain.payments.MerchantOrder getMerchantOrder(MerchantOrder merchantOrderResourceMP, List<Payment> paymentList) {
+    private static com.alura.fiap.domain.payments.MerchantOrder getMerchantOrder(MerchantOrder merchantOrderResourceMP, List<List<Payment>> paymentList) {
         return new com.alura.fiap.domain.payments.MerchantOrder(
                 merchantOrderResourceMP.getId(),
                 merchantOrderResourceMP.getStatus(),
@@ -72,23 +72,26 @@ public class MerchantOrderPaymentUseCase {
                 merchantOrderResourceMP.getTotalAmount());
     }
 
-    private static List<Payment> convertToPayment(List<MerchantOrderPayment> merchantOrderPayment) {
-        List<Payment> payments = new ArrayList<>();
-        merchantOrderPayment.forEach(pay -> payments.add(Payment.with(
-                pay.getId(),
-                pay.getTransactionAmount(),
-                pay.getTotalPaidAmount(),
-                pay.getShippingCost(), pay.getCurrencyId(),
-                pay.getStatus(),
-                pay.getStatusDetails(),
-                pay.getOperationType(),
-                String.valueOf(pay.getDateApproved()),
-                String.valueOf(pay.getDateCreated()),
-                String.valueOf(pay.getLastModified()),
-                pay.getAmountRefunded()
-        )));
-        return payments;
+    private static List<List<Payment>> convertToPayment(List<MerchantOrderPayment> merchantOrderPayments) {
+        return merchantOrderPayments.stream()
+                .map(pay -> Payment.with(
+                        pay.getId(),
+                        pay.getTransactionAmount(),
+                        pay.getTotalPaidAmount(),
+                        pay.getShippingCost(),
+                        pay.getCurrencyId(),
+                        pay.getStatus(),
+                        pay.getStatusDetails(),
+                        pay.getOperationType(),
+                        String.valueOf(pay.getDateApproved()),
+                        String.valueOf(pay.getDateCreated()),
+                        String.valueOf(pay.getLastModified()),
+                        pay.getAmountRefunded()
+                ))
+                .collect(Collectors.toList());
     }
+
+
 
 
 }

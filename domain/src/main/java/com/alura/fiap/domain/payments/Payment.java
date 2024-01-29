@@ -1,6 +1,8 @@
 package com.alura.fiap.domain.payments;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
 
 
 public record Payment(
@@ -17,7 +19,7 @@ public record Payment(
         String lastModified,
         BigDecimal amountRefunded) {
 
-    public static Payment with(
+    public static List<Payment> with(
             final Long paymentId,
             final BigDecimal transactionAmount,
             final BigDecimal totalPaidAmount,
@@ -31,7 +33,7 @@ public record Payment(
             final String lastModified,
             final BigDecimal amountRefunded
     ) {
-        return new Payment(
+        return Collections.singletonList(new Payment(
                 paymentId,
                 transactionAmount,
                 totalPaidAmount,
@@ -43,6 +45,6 @@ public record Payment(
                 dateApproved,
                 dateCreated,
                 lastModified,
-                amountRefunded);
+                amountRefunded));
     }
 }

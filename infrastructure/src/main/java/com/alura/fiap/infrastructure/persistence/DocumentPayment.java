@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Document
 public class DocumentPayment {
@@ -51,7 +52,7 @@ public class DocumentPayment {
         this.amountRefunded = amountRefunded;
     }
 
-    public Payment toAggregate() {
+    public List<Payment> toAggregate() {
         return Payment.with(getPaymentId(), getTransactionAmount(), getTotalPaidAmount(), getShippingCost(), getCurrencyId(),
                 getStatus(), getStatusDetails(), getOperationType(), getDateApproved(), getDateCreated(), getLastModified(), getAmountRefunded());
     }

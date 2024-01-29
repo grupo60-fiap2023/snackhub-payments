@@ -6,18 +6,6 @@
 
     <packaging>jar</packaging>
 
-    <properties>
-        <java.version>17</java.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.projectKey>grupo60-fiap2023_snackhub-payments</sonar.projectKey>
-        <sonar.organization>grupo60-fiap2023</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
-    </properties>
-
     <parent>
         <groupId>com.alura.fiap</groupId>
         <artifactId>snackhub-payments</artifactId>
@@ -278,11 +266,11 @@
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test</testSourceDirectory>
         <plugins>
-<!--            &lt;!&ndash; Plugin do SonarQube &ndash;&gt;
+           <!-- &lt;!&ndash; Plugin do SonarQube &ndash;&gt;
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
+                <version>3.10.0.2594</version>
             </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -292,7 +280,7 @@
                     <useSystemClassLoader>false</useSystemClassLoader>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -300,7 +288,7 @@
                     <source>17</source>
                     <target>17</target>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -314,7 +302,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.0.0-M2</version>
@@ -327,9 +315,9 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
-            <plugin>
+<!--            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.6.7</version>
@@ -339,7 +327,7 @@
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -359,14 +347,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <excludes>
-                        <exclude>com/alura/fiap/infrastructure/Main.class</exclude>
-                        <exclude>com/alura/fiap/infrastructure/configuration/**</exclude>
-                        <exclude>com/alura/fiap/infrastructure/feign/client/**</exclude>
-                        <exclude>com/alura/fiap/infrastructure/presenters/wrapper/**</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
