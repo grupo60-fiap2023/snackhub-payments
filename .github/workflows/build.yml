@@ -18,6 +18,11 @@ jobs:
         with:
           java-version: 17
           distribution: 'zulu' # Alternative distribution options are available
+      - name: Increase Maven Memory
+        run: echo "MAVEN_OPTS='-Xmx4096m -Xms1024m'" >> $GITHUB_ENV
+      - name: Remove SonarScanner Working Directories
+        run: |
+          rm -rf target/sonar
       - name: Change wrapper permissions 🛡️
         run: chmod +x ./mvnw
       - name: Cache SonarCloud packages
