@@ -22,4 +22,8 @@
         <module>infrastructure</module>
     </modules>
 
+    <properties>
+        <sonar.organization>grupo60-fiap2023</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
 </project>
