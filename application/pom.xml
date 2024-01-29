@@ -75,6 +75,10 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
+                    <fork>true</fork>
+                    <compilerArgs>
+                        <arg>-Xss4m</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
