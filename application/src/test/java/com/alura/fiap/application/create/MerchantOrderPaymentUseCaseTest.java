@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 
 class MerchantOrderPaymentUseCaseTest {
 
-    public static final String TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    public static final String TOKEN = "TEST-3823682881313300-012901-0253d629a31919e10fb252ea3991a1e1-1589696702";
     @Mock
     private MerchantOrderPaymentGateway merchantOrderPaymentGateway;
     @Mock
@@ -55,7 +55,7 @@ class MerchantOrderPaymentUseCaseTest {
         ResponseEntity<?> response = merchantOrderPaymentUseCase.execute(orderId, topic);
 
         assertNotNull(response);
-        assertEquals(200, response.getStatusCodeValue()); // Assuming you return 200 OK for success
+        assertEquals(200, response.getStatusCodeValue());
 
     }
 

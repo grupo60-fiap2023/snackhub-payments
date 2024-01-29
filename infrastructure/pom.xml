@@ -205,14 +205,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+        <!-- SLF4J API -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.2</version>
+            <version>1.7.32</version> <!-- Use the latest version available -->
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -277,7 +274,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.alura.fiap.infrastructure.Main.java</mainClass> <!-- Substitua com a sua classe principal -->
+                            <mainClass>com.alura.fiap.infrastructure.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
