@@ -22,4 +22,27 @@
         <module>infrastructure</module>
     </modules>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>grupo60-fiap2023</sonar.organization>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+    </properties>
+
+
+    <build>
+        <plugins>
+            <!-- Plugin do SonarQube -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.10.0.2594</version>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
