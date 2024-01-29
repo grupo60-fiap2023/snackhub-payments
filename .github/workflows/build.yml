@@ -22,6 +22,11 @@ jobs:
         run: echo "MAVEN_OPTS=-Xmx4096m -Xms1024m" >> $GITHUB_ENV
       - name: Change wrapper permissions 🛡️
         run: chmod +x ./mvnw
+      - name: Remove SonarScanner Working Directories
+        run: |
+          rm -rf target
+      - name: Clean Maven
+        run: mvn clean -U
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
@@ -34,11 +39,11 @@ jobs:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven
-      - name: Remove SonarScanner Working Directories
+      - name: Debug Information
         run: |
-          rm -rf target
-      - name: Clean Maven
-        run: mvn clean -U
+         echo "Current Directory: $(pwd)"
+         echo "Listing Files: $(ls -l)"
+         ./mvnw clean install -X
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
