@@ -33,11 +33,11 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven
       - name: Clean Maven
-        run: mvn clean
+        run: mvn clean -U -X
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=grupo60-fiap2023_snackhub-payments
+        run: ./mvnw -U -X verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=grupo60-fiap2023_snackhub-payments
 
   deploy:
     name: Deploy AWS
