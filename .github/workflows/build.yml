@@ -22,7 +22,7 @@ jobs:
         run: echo "MAVEN_OPTS=-Xmx4096m -Xms1024m" >> $GITHUB_ENV
       - name: Remove SonarScanner Working Directories
         run: |
-          rm -rf target/sonar
+          rm -rf target
       - name: Change wrapper permissions 🛡️
         run: chmod +x ./mvnw
       - name: Cache SonarCloud packages

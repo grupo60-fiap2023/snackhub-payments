@@ -331,6 +331,7 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
+                    <argLine>-Xss4m</argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -358,7 +359,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- <plugin>
+             <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
                  <artifactId>maven-deploy-plugin</artifactId>
                  <version>3.0.0-M2</version>
@@ -371,7 +372,7 @@
                          </goals>
                      </execution>
                  </executions>
-             </plugin>-->
+             </plugin>
 
             <!--            <plugin>
                             <groupId>org.sonatype.plugins</groupId>
