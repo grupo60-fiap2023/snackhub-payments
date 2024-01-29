@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
@@ -26,17 +27,28 @@ public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
 
     @Override
     public OrderQrCodeOut createOrderQRCode(String authorization, OrderQrCode request, String userId, String externalPosId) {
-        List<OrderQrCodeItemsRequest> orderQrCodeItemsRequests = List.of(new OrderQrCodeItemsRequest(
-                request.getItems().get(0).title(), request.getItems().get(0).unitMeasure(), request.getItems().get(0).unitPrice(),
-                request.getItems().get(0).quantity(), request.getItems().get(0).totalAmount()));
+        List<OrderQrCodeItemsRequest> orderQrCodeItemsRequests = request.items().stream()
+                .map(item -> new OrderQrCodeItemsRequest(
+                        item.title(),
+                        item.unitMeasure(),
+                        item.unitPrice(),
+                        item.quantity(),
+                        item.totalAmount()
+                )).collect(Collectors.toList());
 
-        var cashOut = new OrderQrCodeCashOutRequest(request.getCashOut().amount());
-        var createOrderQrCodeRequest = new CreateOrderQrCodeRequest(request.getExternalReference(), request.getTitle(),
-                orderQrCodeItemsRequests, request.getTotalAmount(), cashOut, request.getNotificationUrl(), request.getDescription());
+        var cashOut = new OrderQrCodeCashOutRequest(request.cashOut().amount());
+        var createOrderQrCodeRequest = new CreateOrderQrCodeRequest(request.externalReference(), request.title(),
+                orderQrCodeItemsRequests, request.totalAmount(), cashOut, request.notificationUrl(), request.description());
 
         final ResponseEntity<OrderQrCodeResponse> orderQRCode = mpIntegrationGateway.createOrderQRCode(authorization, createOrderQrCodeRequest, userId, externalPosId);
 
-        return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
+        OrderQrCodeResponse orderQRCodeResponse = orderQRCode.getBody();
+        if (orderQRCodeResponse != null) {
+            return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
+        } else {
+            // Lógica para lidar com a resposta nula, se necessário
+            return null;  // ou lança uma exceção, dependendo do comportamento desejado
+        }
 
     }
 }

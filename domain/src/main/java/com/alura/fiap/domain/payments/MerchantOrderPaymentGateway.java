@@ -1,7 +1,6 @@
 package com.alura.fiap.domain.payments;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MerchantOrderPaymentGateway {
 
@@ -9,5 +8,5 @@ public interface MerchantOrderPaymentGateway {
 
     void removeMerchantOrderPayment(MerchantOrder merchantOrder);
 
-    Optional<List<MerchantOrder>> findMerchantOrderPaymentByExternalReference(String externalReference);
+    List<MerchantOrder> findMerchantOrderPaymentByExternalReference(String externalReference);
 }

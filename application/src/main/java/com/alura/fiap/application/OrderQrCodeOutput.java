@@ -9,3 +9,4 @@
         return new OrderQrCodeOutput(orderQrCodeOut.inStoreOrderId(), orderQrCodeOut.qrData());
     }
 }
+

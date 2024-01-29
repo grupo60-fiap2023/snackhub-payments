@@ -1,6 +1,7 @@
 package com.alura.fiap.infrastructure.api;
 
 import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
+import com.alura.fiap.infrastructure.models.OrderQrCodeResponseWrapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
