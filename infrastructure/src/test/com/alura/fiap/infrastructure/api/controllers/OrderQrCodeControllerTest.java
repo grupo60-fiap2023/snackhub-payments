@@ -9,7 +9,6 @@ import com.alura.fiap.domain.payments.OrderQrCodeOut;
 import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
-import com.alura.fiap.infrastructure.models.OrderQrCodeResponseWrapper;
 import com.alura.fiap.infrastructure.presenters.wrapper.OrderQrCodeApiPresenter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +21,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.Collections;
 
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class OrderQrCodeControllerTest {
 
