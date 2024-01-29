@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 
 class MerchantOrderPaymentUseCaseTest {
 
-    public static final String TOKEN = "APP_USR-3823682881313300-012009-9f6e8bc7bb2f56e4c3d67f7cc31dfc88-1589696702";
+    public static final String TOKEN = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
     @Mock
     private MerchantOrderPaymentGateway merchantOrderPaymentGateway;
     @Mock
