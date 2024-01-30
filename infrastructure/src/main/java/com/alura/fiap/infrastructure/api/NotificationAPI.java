@@ -30,6 +30,7 @@ public interface NotificationAPI {
             @ApiResponse(responseCode = "404", description = "Not Found"),
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
-    ResponseEntity<NotificationResponse> notification(@RequestParam @Schema(hidden = true) Long id,
+    ResponseEntity<NotificationResponse> notification(
+            @RequestParam @Schema(hidden = true) Long id,
                                                       @RequestParam @Schema(hidden = true) String topic) throws MPException;
 }

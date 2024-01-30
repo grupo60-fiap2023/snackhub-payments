@@ -51,3 +51,7 @@ api:
   qr-server:
     create-qr-code:
       url: "https://api.qrserver.com/v1/create-qr-code"
+
+access:
+  token:
+    seller: "TEST-3823682881313300-012901-0253d629a31919e10fb252ea3991a1e1-1589696702"

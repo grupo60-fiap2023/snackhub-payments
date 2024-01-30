@@ -1,5 +1,6 @@
 package com.alura.fiap.infrastructure.api.advice;
 
+import com.alura.fiap.application.execeptions.MerchantOrderNotFoundException;
 import com.alura.fiap.infrastructure.exception.CustomOrderQrCodeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception ex) {
-        return new ResponseEntity<>("Ocorreu um erro interno.", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>("Ocorreu um erro interno, tente novamente mais tarde.", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(MerchantOrderNotFoundException.class)
+    public ResponseEntity<String> handlerMerchantNotFound(Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+
     }
 }

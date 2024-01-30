@@ -89,7 +89,7 @@ Utilizado o Cumcumber nos BDD.
 
 ## Como executar só com Docker?
 
-**1. Subir a aplicação e o banco de dados MySQL com Docker:**
+**1. Subir a aplicação e o banco de dados MongoDB com Docker:**
 ```shell
 docker-compose up -d
 ```

@@ -6,7 +6,7 @@ services:
     restart: always
     image: 'mongo:6.0.13'
     environment:
-      - MONGO_INITDB_DATABASE=snackhubpay
+      - MONGO_INITDB_DATABASE=snackhubpaydb
       - MONGO_INITDB_ROOT_PASSWORD=root
       - MONGO_INITDB_ROOT_USERNAME=root
     ports:
@@ -16,7 +16,7 @@ services:
 
   snackhub-payments-app:
     container_name: snackhubpay-app
-    image: marlonfc90/snackhubpay-app:latest
+    image: grupo60fiap2023/snackhubpay-app:latest
     ports:
       - 8080:8080
     depends_on:

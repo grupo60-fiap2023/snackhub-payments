@@ -18,24 +18,7 @@ public class NotificationController implements NotificationAPI {
 
     @Override
     public ResponseEntity<NotificationResponse> notification(Long id, String topic) {
-        try {
-            ResponseEntity<Object> executeResponse = merchantOrderPaymentUseCase.execute(id, topic);
-
-            if (executeResponse.getStatusCode().is2xxSuccessful()) {
-                Object responseBody = executeResponse.getBody();
-
-                if (responseBody instanceof Long) {
-                    NotificationResponse response = new NotificationResponse((Long) responseBody);
-                    return ResponseEntity.ok(response);
-                } else {
-                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-                }
-            } else {
-                return ResponseEntity.status(executeResponse.getStatusCode()).build();
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        merchantOrderPaymentUseCase.execute(id, topic);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
-
 }
