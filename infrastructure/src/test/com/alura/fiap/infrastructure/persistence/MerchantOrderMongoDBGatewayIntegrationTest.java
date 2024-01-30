@@ -2,27 +2,36 @@ package com.alura.fiap.infrastructure.persistence;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
 import com.alura.fiap.infrastructure.gateway.MerchantOrderMongoDBGateway;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@ActiveProfiles("test")
+@SpringBootTest
+@AutoConfigureDataMongo
 public class MerchantOrderMongoDBGatewayIntegrationTest {
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @Autowired
     private MerchantOrderMongoDBGateway merchantOrderMongoDBGateway;
 
+    @BeforeEach
+    public void setUp() {
+        mongoTemplate.getDb().drop();
+    }
 
+    @Test
     public void testSaveAndFindMerchantOrderPaymentByExternalReference() {
         // Dados de exemplo
         MerchantOrder merchantOrder = new MerchantOrder(

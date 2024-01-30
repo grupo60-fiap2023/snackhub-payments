@@ -4,16 +4,24 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import org.junit.experimental.categories.Categories;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+@Categories.ExcludeCategory
 @Configuration
+@Profile({"development", "test"})
 public class SimpleMongoConfig {
+
+    @Value("${spring.data.mongodb.uri}")
+    private String mongoUri;
 
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb://snackhubpay-mongodb:27017/snackhubpaytest");
+        ConnectionString connectionString = new ConnectionString(mongoUri);
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
@@ -23,6 +31,6 @@ public class SimpleMongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate() {
-        return new MongoTemplate(mongo(), "snackhubpaytest");
+        return new MongoTemplate(mongo(), "snackhubpay");
     }
 }

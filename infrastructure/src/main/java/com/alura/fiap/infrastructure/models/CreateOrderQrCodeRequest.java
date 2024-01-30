@@ -3,9 +3,11 @@ package com.alura.fiap.infrastructure.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.jetbrains.annotations.NotNull;
+import org.junit.experimental.categories.Categories;
 
 import java.util.List;
 
+@Categories.ExcludeCategory
 public record CreateOrderQrCodeRequest(
         @JsonProperty("external_reference") @Schema(description = "Referencia do pedido", example = "aWRfcGVkaWRv")
         String externalReference,

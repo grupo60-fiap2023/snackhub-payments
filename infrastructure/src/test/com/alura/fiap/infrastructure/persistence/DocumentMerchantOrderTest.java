@@ -1,39 +1,45 @@
 package com.alura.fiap.infrastructure.persistence;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
+import com.alura.fiap.domain.payments.Payment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class DocumentMerchantOrderTest {
-    @Mock
-    MerchantOrder merchantOrder;
 
+    @Test
+    void testCreateFromMerchantOrder() {
 
-    public void testCreateFromMerchantOrder() {
+        List<Payment> paymentList = new ArrayList<>();
+        MerchantOrder merchantOrder = MerchantOrder.with(
+                1L,
+                "pending",
+                "extRef123",
+                paymentList,
+                "http://example.com/notification",
+                BigDecimal.ONE
+        );
+
         // Dados de exemplo
         Long orderId = 1L;
         String status = "pending";
         String externalReference = "extRef123";
         String notificationUrl = "http://example.com/notification";
-        BigDecimal totalAmount = new BigDecimal("100.00");
+        BigDecimal totalAmount = new BigDecimal("1");
 
-
-        when(merchantOrder.orderId()).thenReturn(orderId);
-        when(merchantOrder.status()).thenReturn(status);
-        when(merchantOrder.externalReference()).thenReturn(externalReference);
-        when(merchantOrder.notificationUrl()).thenReturn(notificationUrl);
-        when(merchantOrder.totalAmount()).thenReturn(totalAmount);
-
-        // Criação de um DocumentMerchantOrder a partir do MerchantOrder
         DocumentMerchantOrder documentMerchantOrder = DocumentMerchantOrder.create(merchantOrder);
 
         // Verificação dos valores
@@ -45,6 +51,7 @@ class DocumentMerchantOrderTest {
         Assertions.assertEquals(Collections.emptyList(), documentMerchantOrder.getDocumentPayments());
     }
 
+    @Test
     public void testWithTotalAmount() {
         // Criação de um DocumentMerchantOrder de exemplo
         DocumentMerchantOrder originalDocumentMerchantOrder = new DocumentMerchantOrder(

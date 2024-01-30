@@ -4,9 +4,11 @@ import com.alura.fiap.application.OrderQrCodeOutput;
 import com.alura.fiap.application.create.CreateOrderQrCodeItemCommand;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
+import org.junit.experimental.categories.Categories;
 
 import java.util.List;
 
+@Categories.ExcludeCategory
 public interface OrderQrCodeItemApiPresenter {
 
     static List<CreateOrderQrCodeItemCommand> present(List<OrderQrCodeItemsRequest> itemsRequest) {

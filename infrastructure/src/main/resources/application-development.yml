@@ -1,9 +1,7 @@
-mongodb:
-  username: root
-  password: root
-  schema: snackhubpay
-  url: mongodb://snackhubpay-mongodb
-  port: 27017
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/snackhubpaydev
 
 server:
   port: 8090
