@@ -14,7 +14,7 @@ server:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/snackhubpay
+      uri: mongodb://snackhubpay-mongodb/snackhubpay
     continue-on-error: true
     hikari:
       auto-commit: false
