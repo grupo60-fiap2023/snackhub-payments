@@ -52,11 +52,11 @@ No microserviço estamos utilizando um banco de dados NOSQL MongoDB.
 # Cobertura e Qualidade
 
 Nossa pipeline no Github Actions é realizada todas as etapas de build, 
-analise e deploy da aplicação.
+análise e deploy da aplicação.
 
 Na Step Build and analyze:
 
-![img.png](readmefiles/stepbuild.png)
+![img.png](readmefiles/deploy-sucess.png)
 
 - Build do microserviço
 - Execução de todos os tipos de testes
@@ -66,7 +66,6 @@ Na Step Build and analyze:
 https://sonarcloud.io/summary/overall?id=grupo60-fiap2023_snackhub-payments
 
 ![img.png](readmefiles/sonarcloud.png)
-* os 3 code smell serão customizados na regra do Sonar, pois foram analisados pela equipe e será uma prática.
 
 No SonarCloud é avaliado:
 - Prováveis Bugs
@@ -74,11 +73,7 @@ No SonarCloud é avaliado:
 - Linhas duplicadas
 - Conbertura do fonte por testes
 
-Como pode ser visto na imagem e no link a Cobertura hoje do serviço está em 97,5%.
-
-O nosso serviço também tem uma configuração no qual a pipeline irá falhar caso um novo fonte acabe baixando a cobertura do fonte inferior a 85%:
-
-![img.png](readmefiles/configcoverage.png)
+Como pode ser visto na imagem e no link a Cobertura hoje do serviço está em 0%(ajustar config).
 
 
 ## Testes Implementados
@@ -90,6 +85,7 @@ Todos módulos implementados no serviço possuem testes de unidade implementados
 ## BDD
 Utilizado o Cumcumber nos BDD.
 
+![img.png](readmefiles/test-infra.png)
 
 ## Como executar só com Docker?
 
@@ -105,7 +101,7 @@ http://localhost:8080/swagger-ui/index.html#
 # Step Deploy
 O último step da pipeline realiza de forma automatizada o deploy para a AWS.
 
-![img.png](readmefiles/deployaws.png)
+![img.png](readmefiles/deploy-sucess.png)
 
 Serviço no ar:
 

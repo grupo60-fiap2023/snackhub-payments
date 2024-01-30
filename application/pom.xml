@@ -80,12 +80,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <includes>
-                        <include>com/alura/fiap/application/**</include>
-                        <!-- Add more package patterns as needed -->
-                    </includes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
