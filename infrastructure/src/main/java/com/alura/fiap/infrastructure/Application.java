@@ -24,7 +24,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableFeignClients
 @EnableMongoRepositories(basePackages = "com.alura.fiap.infrastructure.persistence")
 @SpringBootApplication(scanBasePackages = "com.alura.fiap", exclude = {DataSourceAutoConfiguration.class, MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
-public class Main {
+public class Application {
     public static void main(String[] args) {
         System.setProperty(AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME, "development");
         SpringApplication.run(WebServerConfig.class, args);

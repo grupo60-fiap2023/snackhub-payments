@@ -16,7 +16,7 @@ services:
 
   snackhub-payments-app:
     container_name: snackhubpay-app
-    image: grupo60fiap2023/snackhubpay-app:latest
+    image: marlonfc90/snackhubpay-app:latest
     ports:
       - 8080:8080
     depends_on:
