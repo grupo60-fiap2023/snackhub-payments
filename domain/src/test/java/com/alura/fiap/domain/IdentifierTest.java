@@ -1,9 +1,12 @@
 package com.alura.fiap.domain;
 
+import org.junit.experimental.categories.Categories;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class IdentifierTest {
+@Categories.ExcludeCategory
+class IdentifierTest {
 
     // Concrete subclass for testing
     private static class TestIdentifier extends Identifier {
@@ -20,7 +23,7 @@ public class IdentifierTest {
     }
 
     @Test
-    public void testGetValue() {
+    void testGetValue() {
         // Given
         Long expectedValue = 42L;
 

@@ -87,6 +87,10 @@ Utilizado o Cumcumber nos BDD.
 
 ![img.png](readmefiles/test-infra.png)
 
+## Teste de Integração
+
+![img.png](readmefiles/integration-test-mongodb.png)
+
 ## Como executar só com Docker?
 
 **1. Subir a aplicação e o banco de dados MongoDB com Docker:**
