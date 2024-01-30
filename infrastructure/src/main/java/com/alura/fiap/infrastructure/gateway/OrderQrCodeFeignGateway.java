@@ -1,7 +1,6 @@
 package com.alura.fiap.infrastructure.gateway;
 
 
-import com.alura.fiap.application.execeptions.HandlerException;
 import com.alura.fiap.domain.payments.OrderQrCode;
 import com.alura.fiap.domain.payments.OrderQrCodeGateway;
 import com.alura.fiap.domain.payments.OrderQrCodeOut;
@@ -10,6 +9,7 @@ import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
+import org.junit.experimental.categories.Categories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Categories.ExcludeCategory
 @Component
 public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
 

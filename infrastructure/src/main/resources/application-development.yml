@@ -4,7 +4,7 @@ spring:
       uri: mongodb://localhost:27017/snackhubpaydev
 
 server:
-  port: 8090
+  port: 8080
   undertow:
     threads:
       worker: 10
