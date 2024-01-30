@@ -17,7 +17,8 @@ spring:
     mongodb:
       user: root
       password: root
-      uri: mongodb://localhost:27017/snackhubpay
+      uri: mongodb://snackhubpay-mongodb
+      port: 27017
     continue-on-error: true
     hikari:
       auto-commit: false
