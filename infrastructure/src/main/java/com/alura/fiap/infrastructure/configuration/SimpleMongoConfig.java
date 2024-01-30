@@ -13,7 +13,7 @@ public class SimpleMongoConfig {
 
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/snackhubpaytest");
+        ConnectionString connectionString = new ConnectionString("mongodb://snackhubpay-mongodb:27017/snackhubpaytest");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
