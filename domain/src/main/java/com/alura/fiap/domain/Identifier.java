@@ -1,6 +1,8 @@
 package com.alura.fiap.domain;
 
-public abstract class Identifier  {
+import org.junit.experimental.categories.Categories;
 
+@Categories.ExcludeCategory
+public abstract class Identifier  {
     public abstract Long getValue();
 }

@@ -3,9 +3,11 @@ package com.alura.fiap.infrastructure.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.jetbrains.annotations.NotNull;
+import org.junit.experimental.categories.Categories;
 
 import java.math.BigDecimal;
 
+@Categories.ExcludeCategory
 public record PaymentCreateRequest(
         @JsonProperty("description") @NotNull @Schema(description = "Descrição do pagamento", example = "Payment for product test status APRO")
         String description,

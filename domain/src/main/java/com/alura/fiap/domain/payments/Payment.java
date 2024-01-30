@@ -1,8 +1,11 @@
 package com.alura.fiap.domain.payments;
 
+import org.junit.experimental.categories.Categories;
+
 import java.math.BigDecimal;
 
 
+@Categories.ExcludeCategory
 public record Payment(
         Long paymentId,
         BigDecimal transactionAmount,

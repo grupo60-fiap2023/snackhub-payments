@@ -2,7 +2,9 @@ package com.alura.fiap.infrastructure.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.junit.experimental.categories.Categories;
 
+@Categories.ExcludeCategory
 public record OrderQrCodeResponse(
         @JsonProperty("in_store_order_id") @Schema(description = "id da Order QrCode", example = "9fb91863-2b00-4333-92ae-a70011453722")
         String inStoreOrderId,

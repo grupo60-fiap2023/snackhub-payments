@@ -1,6 +1,8 @@
 package com.alura.fiap.domain.payments;
 
+import org.junit.experimental.categories.Categories;
 
+@Categories.ExcludeCategory
 public record OrderQrCodeItem(String title, String unitMeasure, Double unitPrice, Integer quantity,
                               Double totalAmount) {
 

@@ -2,6 +2,7 @@ package com.alura.fiap.infrastructure.gateway;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
 import com.alura.fiap.domain.payments.MerchantOrderPaymentGateway;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -14,6 +15,7 @@ public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway 
 
     private final MongoTemplate mongoTemplate;
 
+    @Autowired
     public MerchantOrderMongoDBGateway(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }

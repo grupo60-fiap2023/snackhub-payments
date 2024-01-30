@@ -5,11 +5,13 @@
  import org.apache.http.impl.client.CloseableHttpClient;
  import org.apache.http.impl.client.HttpClients;
  import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+ import org.junit.experimental.categories.Categories;
  import org.springframework.context.annotation.Bean;
  import org.springframework.context.annotation.Configuration;
 
  import java.util.concurrent.TimeUnit;
 
+ @Categories.ExcludeCategory
  @Configuration
  public class FeignConfig {
 
