@@ -32,7 +32,7 @@ public interface OrderQrCodeAPI {
     })
     ResponseEntity<byte[]> createMerchantOrderQrCode(
             @RequestHeader(required = false) @Schema(hidden = true) String authorization,
-            @RequestHeader() @Schema(example = "TEST-3823682881313300-012009-a3ed8d62291034b7e494c94a46285935-1589696702") String accessToken,
+            @RequestHeader() String accessToken,
             @RequestBody @Valid CreateOrderQrCodeRequest input,
             @PathVariable @Schema(description = "Id do usuário no app", example = "1589696702") String userId,
             @PathVariable @Schema(description = "Id da Loja(POS) vincalado a app", example = "SNACKBARPOTESTSELLER") String externalPosId);

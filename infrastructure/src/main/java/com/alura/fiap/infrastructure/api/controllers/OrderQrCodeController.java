@@ -50,6 +50,7 @@ public class OrderQrCodeController implements OrderQrCodeAPI {
                     request.description());
 
             var orderQrCode = this.createOrderQrCodeUseCase.execute(authorization, command, userId, externalPosId);
+
             final byte[] image = createImageQrCodeUseCase.execute(CreateImageQrCodeCommand.with(orderQrCode.qrData()));
             logger.info("Merchant order QR code created successfully for userId: {}, externalPosId: {}", userId, externalPosId);
 

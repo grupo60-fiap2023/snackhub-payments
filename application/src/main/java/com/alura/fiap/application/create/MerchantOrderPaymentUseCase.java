@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.alura.fiap.application.execeptions.HandlerException.handleException;
@@ -49,6 +50,7 @@ public class MerchantOrderPaymentUseCase {
                     this.merchantOrderPaymentGateway.saveMerchantOrderPayment(getMerchantOrder(merchantOrderResourceMP, payments));
                 } else {
                     logger.info("No payments found for merchant order with ID: {}", merchantOrderResourceMP.getId());
+                    this.merchantOrderPaymentGateway.saveMerchantOrderPayment(getMerchantOrder(merchantOrderResourceMP, Collections.emptyList()));
                 }
             }
             return ResponseEntity.ok().build();

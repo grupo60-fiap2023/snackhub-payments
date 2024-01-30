@@ -49,6 +49,6 @@ class GlobalExceptionHandlerTest {
 
         // Assert
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
-        assertEquals("Ocorreu um erro interno.", responseEntity.getBody());
+        assertEquals("Ocorreu um erro interno, tente novamente mais tarde.", responseEntity.getBody());
     }
 }
