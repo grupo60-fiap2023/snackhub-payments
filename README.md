@@ -73,7 +73,7 @@ No SonarCloud é avaliado:
 - Linhas duplicadas
 - Conbertura do fonte por testes
 
-Como pode ser visto na imagem e no link a Cobertura hoje do serviço está em 0%(ajustar config).
+Como pode ser visto na imagem e no link a Cobertura hoje do serviço está em 13%(Ciente do ajuste na config do report de coverage).
 
 
 ## Testes Implementados
@@ -105,9 +105,12 @@ O último step da pipeline realiza de forma automatizada o deploy para a AWS.
 
 Serviço no ar:
 
-![img.png](readmefiles/service.png)
+![img.png](readmefiles/app-ar.png)
 
 # Proteção Repositório
 ![img.png](readmefiles/branchprotect1.png)
 
 ![img_1.png](readmefiles/branchprotect2.png)
+
+# Merge Bloqueado main protegida
+![img_1.png](readmefiles/merge-block.png)
