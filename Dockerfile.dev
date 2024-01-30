@@ -1,6 +1,6 @@
 # Use an official Maven image as the base image
-#docker build -f Dockerfile.dev -t marlonfc90/snackhubpay-app:latest .
-#docker push marlonfc90/snackhubpay-app
+#docker build -f Dockerfile.dev -t grupo60fiap2023/snackhubpay-app:latest .
+#docker push grupo60fiap2023/snackhubpay-app
 #docker-compose up -d
 
 FROM maven:3.8.4-openjdk-17-slim AS build
