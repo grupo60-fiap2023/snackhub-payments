@@ -3,6 +3,7 @@ package com.alura.fiap.infrastructure.persistence;
 import com.alura.fiap.domain.payments.MerchantOrder;
 import com.alura.fiap.infrastructure.gateway.MerchantOrderMongoDBGateway;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
@@ -16,9 +17,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ActiveProfiles("test")
-@SpringBootTest
 @AutoConfigureDataMongo
-public class MerchantOrderMongoDBGatewayIntegrationTest {
+@SpringBootTest
+class MerchantOrderMongoDBGatewayIntegrationTest {
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -32,7 +33,8 @@ public class MerchantOrderMongoDBGatewayIntegrationTest {
     }
 
     @Test
-    public void testSaveAndFindMerchantOrderPaymentByExternalReference() {
+    @DisplayName("Save and Find Merchant Order Payment by External Reference")
+    void testSaveAndFindMerchantOrderPaymentByExternalReference() {
         // Dados de exemplo
         MerchantOrder merchantOrder = new MerchantOrder(
                 1L,
