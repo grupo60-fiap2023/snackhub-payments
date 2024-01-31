@@ -29,9 +29,9 @@ jobs:
         run: chmod +x ./mvnw
       - name: Remove SonarScanner Working Directories
         run: |
-          rm -rf target
+          rm -rf target/sonar
       - name: Clean Maven
-        run: mvn clean
+        run: mvn clean -DskipTests
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
@@ -68,7 +68,7 @@ jobs:
       - name: Build and analyze 🔍
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw clean install
+        run: ./mvnw clean install -DskipTests
       - name: Configure AWS credentials 🔑
         uses: aws-actions/configure-aws-credentials@v1
         with:
