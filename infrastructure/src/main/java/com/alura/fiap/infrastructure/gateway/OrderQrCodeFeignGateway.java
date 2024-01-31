@@ -9,7 +9,6 @@ import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
-import org.junit.experimental.categories.Categories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
-@Categories.ExcludeCategory
 @Component
 public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
 
@@ -40,7 +37,7 @@ public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
                         item.unitPrice(),
                         item.quantity(),
                         item.totalAmount()
-                )).collect(Collectors.toList());
+                )).toList();
 
         var cashOut = new OrderQrCodeCashOutRequest(request.cashOut().amount());
         var createOrderQrCodeRequest = new CreateOrderQrCodeRequest(request.externalReference(), request.title(),

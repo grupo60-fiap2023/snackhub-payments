@@ -6,7 +6,7 @@ services:
     restart: always
     image: 'mongo:6.0.13'
     environment:
-      - MONGO_INITDB_DATABASE=snackhubpaytest
+      - MONGO_INITDB_DATABASE=snackhubpay
     ports:
       - "27017"
     networks:

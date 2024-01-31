@@ -1,11 +1,8 @@
 package com.alura.fiap.domain.payments;
 
-import org.junit.experimental.categories.Categories;
-
 import java.math.BigDecimal;
 import java.util.List;
 
-@Categories.ExcludeCategory
 public record MerchantOrder(Long orderId,
                             String status,
                             String externalReference,

@@ -2,9 +2,7 @@ package com.alura.fiap.infrastructure.presenters.wrapper;
 
 import com.alura.fiap.application.OrderQrCodeOutput;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
-import org.junit.experimental.categories.Categories;
 
-@Categories.ExcludeCategory
 public interface OrderQrCodeApiPresenter {
 
     static OrderQrCodeResponseWrapper present(OrderQrCodeOutput orderQrCodeOutput) {

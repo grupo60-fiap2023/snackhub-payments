@@ -55,14 +55,6 @@ public class OrderQrCodeFeignGatewayTest {
         // Configurar o comportamento do mock
         when(mock.createOrderQRCode(eq(authorization), eq(expectedCreateOrderRequest), eq(userId), eq(externalPosId))).thenReturn(mockResponseEntity);
 
-       // OrderQrCodeOut orderQrCodeOut = mock(OrderQrCodeOut.class);
-        // Chamar o método a ser testado
-        //when(orderQrCodeFeignGateway.createOrderQRCode(authorization, request, userId, externalPosId)).thenReturn(orderQrCodeOut);
-
-
-        //OrderQrCodeOut orderQrCodeOut = orderQrCodeFeignGateway.createOrderQRCode(authorization, request, userId, externalPosId);
-
-        // Verificar se o método do mock foi chamado corretamente
         verify(mock, Mockito.never()).createOrderQRCode(eq(authorization), eq(expectedCreateOrderRequest), eq(userId), eq(externalPosId));
 
         System.out.println("In Store Order ID: Expected: " + mockOrderQrCodeResponse.inStoreOrderId() + ", Actual: " + "inStoreOrderId");

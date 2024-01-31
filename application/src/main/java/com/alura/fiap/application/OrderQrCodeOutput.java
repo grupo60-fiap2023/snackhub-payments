@@ -2,9 +2,8 @@
 
 
  import com.alura.fiap.domain.payments.OrderQrCodeOut;
- import org.junit.experimental.categories.Categories;
 
- @Categories.ExcludeCategory
+
  public record OrderQrCodeOutput(String inStoreOrderId, String qrData) {
 
     public static OrderQrCodeOutput from(OrderQrCodeOut orderQrCodeOut) {

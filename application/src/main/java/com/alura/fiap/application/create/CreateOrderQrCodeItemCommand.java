@@ -1,8 +1,5 @@
 package com.alura.fiap.application.create;
 
-import org.junit.experimental.categories.Categories;
-
-@Categories.ExcludeCategory
 public record CreateOrderQrCodeItemCommand(
 
         String title,

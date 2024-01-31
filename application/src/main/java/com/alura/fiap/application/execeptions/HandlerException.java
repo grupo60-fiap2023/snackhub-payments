@@ -22,6 +22,6 @@ public class HandlerException {
     }
 
     public static void setLogger(Logger mockLogger) {
-        // TODO document why this method is empty
+        // document why this method is empty
     }
 }

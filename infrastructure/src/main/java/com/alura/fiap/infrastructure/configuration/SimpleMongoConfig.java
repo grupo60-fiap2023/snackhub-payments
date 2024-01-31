@@ -17,6 +17,9 @@ public class SimpleMongoConfig {
     @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
 
+    @Value("${spring.data.mongodb.schema}")
+    private String schema;
+
     @Bean
     public MongoClient mongo() {
         ConnectionString connectionString = new ConnectionString(mongoUri);
@@ -29,6 +32,6 @@ public class SimpleMongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate() {
-        return new MongoTemplate(mongo(), "snackhubpay");
+        return new MongoTemplate(mongo(), schema);
     }
 }

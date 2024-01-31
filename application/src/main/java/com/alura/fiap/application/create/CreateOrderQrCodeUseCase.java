@@ -29,8 +29,7 @@ public class CreateOrderQrCodeUseCase extends AuthUseCase<CreateOrderQrCodeComma
                         item.unitPrice(),
                         item.quantity(),
                         item.totalAmount()
-                ))
-                .collect(Collectors.toList());
+                )).toList();
 
         var cashOut = new OrderQrCodeCashOut(command.getCashOut().amount());
 

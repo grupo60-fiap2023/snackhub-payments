@@ -48,6 +48,4 @@ class NotificationControllerTest {
         // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
-
-    // Adicione mais testes para outros cenários conforme necessário
 }

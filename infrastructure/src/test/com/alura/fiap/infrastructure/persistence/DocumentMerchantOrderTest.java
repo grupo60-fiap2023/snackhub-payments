@@ -52,7 +52,7 @@ class DocumentMerchantOrderTest {
     }
 
     @Test
-    public void testWithTotalAmount() {
+    void testWithTotalAmount() {
         // Criação de um DocumentMerchantOrder de exemplo
         DocumentMerchantOrder originalDocumentMerchantOrder = new DocumentMerchantOrder(
                 1L,

@@ -48,8 +48,6 @@ class OrderQrCodeControllerTest {
     @Test
     void testCreateMerchantOrderQrCode() {
 
-//        CreateOrderQrCodeUseCase createOrderQrCodeUseCase = mock(CreateOrderQrCodeUseCase.class);
-
         when(createOrderQrCodeUseCase.execute(anyString(), any(CreateOrderQrCodeCommand.class), anyString(), anyString())).thenReturn(OrderQrCodeOutput.from(OrderQrCodeOut.createOrderQrCodeOut("8d2d0b8d-dcef-43d1-9f20-7ac300945f39", "00020101021243650016COM.MERCADOLIBRE0201306368d2d0b8d-dcef-43d1-9f20-7ac300945f395204000053039865802BR5908Snackhub6009SAO PAULO62070503***630425EC")));
 
         ResponseEntity<byte[]> response = this.orderQrCodeController.createMerchantOrderQrCode(
