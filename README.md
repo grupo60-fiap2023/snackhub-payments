@@ -65,7 +65,7 @@ Na Step Build and analyze:
 
 https://sonarcloud.io/summary/overall?id=grupo60-fiap2023_snackhub-payments
 
-![img.png](readmefiles/sonarcloud.png)
+![img.png](readmefiles/sonarx??cloud.png)
 
 No SonarCloud é avaliado:
 - Prováveis Bugs
@@ -73,21 +73,27 @@ No SonarCloud é avaliado:
 - Linhas duplicadas
 - Conbertura do fonte por testes
 
-Como pode ser visto na imagem e no link a Cobertura hoje do serviço está em 13%(Ciente do ajuste na config do report de coverage).
-
 
 ## Testes Implementados
 
 Todos módulos implementados no serviço possuem testes de unidade implementados com o JUnit e boas práticas de BDD.
 
-![img.png](readmefiles/test-app-domain.png)
+#### application:
+![img.png](readmefiles/coverage-application.png)
+
+#### domain:
+![img.png](readmefiles/coverage-domain.png)
+
+#### infrastructure:
+![img.png](readmefiles/coverage-infra.png)
+
 
 ## BDD
 Utilizado o Cumcumber nos BDD.
 
 ![img.png](readmefiles/test-infra.png)
 
-## Teste de Integração
+## Integração
 
 ![img.png](readmefiles/integration-test-mongodb.png)
 
