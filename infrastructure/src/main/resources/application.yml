@@ -15,7 +15,8 @@ spring:
   data:
     mongodb:
       schema: snackhubpay
-      uri: mongodb://snackhubpay-mongodb
+      uri: mongodb://localhost
+      port: 27017
     continue-on-error: true
     hikari:
       auto-commit: false
