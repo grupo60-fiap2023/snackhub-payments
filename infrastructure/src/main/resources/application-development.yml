@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/snackhubpaydev
+      uri: mongodb://snackhubpay-mongodb/snackhubpaydev
 
 server:
   port: 8080

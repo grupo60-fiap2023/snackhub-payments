@@ -7,13 +7,13 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
-    name: Build and analyze
-    runs-on: ubuntu-latest
     services:
       mongodb:
         image: mongo:latest
         ports:
           - 27017:27017
+    name: Build and analyze
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -54,6 +54,11 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=grupo60-fiap2023_snackhub-payments
   deploy:
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
     name: Deploy AWS
     runs-on: ubuntu-latest
     needs: build
@@ -75,11 +80,9 @@ jobs:
           aws-region: us-east-1
           aws-access-key-id: ${{ secrets.TF_VAR_AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.TF_VAR_AWS_SECRET_KEY }}
-
       - name: Login to Amazon ECR Private 🔑🚪
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-
       - name: Build, tag, and push docker image to Amazon ECR 🏗️
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}

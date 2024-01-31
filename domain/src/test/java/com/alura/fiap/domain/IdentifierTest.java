@@ -1,11 +1,9 @@
 package com.alura.fiap.domain;
 
-import org.junit.experimental.categories.Categories;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Categories.ExcludeCategory
 class IdentifierTest {
 
     // Concrete subclass for testing

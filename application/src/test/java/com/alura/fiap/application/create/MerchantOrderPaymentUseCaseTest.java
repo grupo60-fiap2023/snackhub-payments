@@ -6,7 +6,6 @@ import com.mercadopago.core.MPRequestOptions;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.merchantorder.MerchantOrder;
-import org.junit.experimental.categories.Categories;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@Categories.ExcludeCategory
 class MerchantOrderPaymentUseCaseTest {
 
     public static final String TOKEN = "TEST-3823682881313300-012901-0253d629a31919e10fb252ea3991a1e1-1589696702";
