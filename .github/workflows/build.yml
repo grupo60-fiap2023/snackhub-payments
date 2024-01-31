@@ -54,6 +54,11 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=grupo60-fiap2023_snackhub-payments
   deploy:
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
     name: Deploy AWS
     runs-on: ubuntu-latest
     needs: build
@@ -78,18 +83,6 @@ jobs:
       - name: Login to Amazon ECR Private 🔑🚪
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: Check MongoDB connection
-        run: |
-          docker run --rm -d -p 27017:27017 --name mongodb mongo:6.0.13
-          sleep 10  # Aguarde alguns segundos para o MongoDB iniciar
-          docker exec mongodb mongo --eval 'printjson(db.serverStatus())'
-          if [ $? -eq 0 ]; then
-            echo "MongoDB connection successful."
-          else
-            echo "Failed to connect to MongoDB."
-            exit 1
-          fi
-        timeout-minutes: 5
       - name: Build, tag, and push docker image to Amazon ECR 🏗️
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
