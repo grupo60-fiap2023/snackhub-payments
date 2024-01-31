@@ -80,7 +80,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       - name: Check MongoDB connection
         run: |
-          docker run --rm -d -p 27018:27017 --name mongodb mongo:6.0.13
+          docker run --rm -d -p 27017:27017 --name mongodb mongo:6.0.13
           sleep 10  # Aguarde alguns segundos para o MongoDB iniciar
           docker exec mongodb mongo --eval 'printjson(db.serverStatus())'
           if [ $? -eq 0 ]; then
