@@ -9,7 +9,7 @@ WORKDIR /usr/app/
 COPY . .
 
 # Executa a compilação e o empacotamento do JAR
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Estágio de execução usando a imagem JRE Alpine
 FROM eclipse-temurin:17.0.5_8-jre-alpine

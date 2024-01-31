@@ -31,7 +31,7 @@ jobs:
         run: |
           rm -rf target
       - name: Clean Maven
-        run: mvn clean -U
+        run: mvn clean
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
@@ -48,17 +48,12 @@ jobs:
         run: |
          echo "Current Directory: $(pwd)"
          echo "Listing Files: $(ls -l)"
-         ./mvnw clean install -X
+         ./mvnw clean install
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=grupo60-fiap2023_snackhub-payments
   deploy:
-    services:
-      mongodb:
-        image: mongo:latest
-        ports:
-          - 27017:27017
     name: Deploy AWS
     runs-on: ubuntu-latest
     needs: build

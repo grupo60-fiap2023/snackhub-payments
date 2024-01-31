@@ -6,7 +6,9 @@ services:
     restart: always
     image: 'mongo:latest'
     environment:
-      - MONGO_INITDB_DATABASE=snackhubpaydev
+        - MONGO_INITDB_DATABASE=snackhubpay
+        - MONGO_INITDB_ROOT_USERNAME=
+        - MONGO_INITDB_ROOT_PASSWORD=
     ports:
       - "27017"
     networks:
