@@ -67,8 +67,13 @@ public class OrderQrCodeFeignGatewayTest {
         System.out.println("In Store Order ID: Expected: " + mockOrderQrCodeResponse.inStoreOrderId() + ", Actual: " + "inStoreOrderId");
         System.out.println("QR Data: Expected: " + mockOrderQrCodeResponse.qrData() + ", Actual: " + "qrData");
 
+        // Adicione asserts adicionais
+        assertThat(mockOrderQrCodeResponse).isNotNull();  // Verifica se o resultado não é nulo
         assertThat(mockOrderQrCodeResponse.inStoreOrderId()).isEqualTo("inStoreOrderId");
         assertThat(mockOrderQrCodeResponse.qrData()).isEqualTo("qrData");
+
+        // Adicione verificações de chamada adicionais
+        verify(mpIntegrationGateway, times(1)).createOrderQRCode(anyString(), any(CreateOrderQrCodeRequest.class), anyString(), anyString());
     }
 
     private static CreateOrderQrCodeRequest getCreateOrderQrCodeRequest() {

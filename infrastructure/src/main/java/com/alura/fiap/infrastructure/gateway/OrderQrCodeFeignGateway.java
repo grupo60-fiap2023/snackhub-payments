@@ -31,12 +31,7 @@ public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
     public OrderQrCodeOut createOrderQRCode(String authorization, OrderQrCode request, String userId, String externalPosId) {
 
         List<OrderQrCodeItemsRequest> orderQrCodeItemsRequests = request.items().stream()
-                .map(item -> new OrderQrCodeItemsRequest(
-                        item.title(),
-                        item.unitMeasure(),
-                        item.unitPrice(),
-                        item.quantity(),
-                        item.totalAmount()
+                .map(item -> new OrderQrCodeItemsRequest(item.title(), item.unitMeasure(), item.unitPrice(), item.quantity(), item.totalAmount()
                 )).toList();
 
         var cashOut = new OrderQrCodeCashOutRequest(request.cashOut().amount());
@@ -45,13 +40,6 @@ public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
 
         final ResponseEntity<OrderQrCodeResponse> orderQRCode = mpIntegrationGateway.createOrderQRCode(authorization, createOrderQrCodeRequest, userId, externalPosId);
         logger.info("Post MP mpIntegrationGateway.createOrderQRCode: {} ", orderQRCode);
-        OrderQrCodeResponse orderQRCodeResponse = orderQRCode.getBody();
-        if (orderQRCodeResponse != null) {
-            return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
-        } else {
-            // Lógica para lidar com a resposta nula, se necessário
-            return null;  // ou lança uma exceção, dependendo do comportamento desejado
-        }
-
+        return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
     }
 }
