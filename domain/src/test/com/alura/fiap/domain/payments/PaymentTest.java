@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PaymentTest {
+class PaymentTest {
 
     @Test
-    public void testPaymentWith() {
+    void testPaymentWith() {
         // Given
         Long paymentId = 12345L;
         BigDecimal transactionAmount = new BigDecimal("100.00");

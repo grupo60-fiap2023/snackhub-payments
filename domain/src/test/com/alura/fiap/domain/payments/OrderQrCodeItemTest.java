@@ -2,27 +2,27 @@ package com.alura.fiap.domain.payments;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
-class OrderQrCodeItemTest {
+public class OrderQrCodeItemTest {
 
     @Test
-    void testOrderQrCodeItemCreation() {
-        // Given
-        String title = "Product Title";
-        String unitMeasure = "Each";
+    public void testOrderQrCodeItemCreation() {
+        // Dados de exemplo
+        String title = "Test Item";
+        String unitMeasure = "Test Unit";
         Double unitPrice = 10.0;
-        Integer quantity = 5;
-        Double totalAmount = 50.0;
+        Integer quantity = 2;
+        Double totalAmount = 20.0;
 
-        // When
-        OrderQrCodeItem orderQrCodeItem = new OrderQrCodeItem(title, unitMeasure, unitPrice, quantity, totalAmount);
+        OrderQrCodeItem orderQrCodeItem = OrderQrCodeItem.with(title, unitMeasure, unitPrice, quantity, totalAmount);
 
-        // Then
-        assertEquals(title, orderQrCodeItem.title());
-        assertEquals(unitMeasure, orderQrCodeItem.unitMeasure());
-        assertEquals(unitPrice, orderQrCodeItem.unitPrice());
-        assertEquals(quantity, orderQrCodeItem.quantity());
-        assertEquals(totalAmount, orderQrCodeItem.totalAmount());
+        assertThat(orderQrCodeItem.title()).isEqualTo(title);
+        assertThat(orderQrCodeItem.unitMeasure()).isEqualTo(unitMeasure);
+        assertThat(orderQrCodeItem.unitPrice()).isEqualTo(unitPrice);
+        assertThat(orderQrCodeItem.quantity()).isEqualTo(quantity);
+        assertThat(orderQrCodeItem.totalAmount()).isEqualTo(totalAmount);
     }
+
+    // Adicione mais testes conforme necessário, como testes para outros métodos ou cenários específicos.
 }

@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class OrderQrCodeOutTest {
+class OrderQrCodeOutTest {
 
     @Test
-    public void testCreateOrderQrCodeOut() {
+    void testCreateOrderQrCodeOut() {
         // Given
         String inStoreOrderId = "12345";
         String qrData = "QR_CODE_DATA";

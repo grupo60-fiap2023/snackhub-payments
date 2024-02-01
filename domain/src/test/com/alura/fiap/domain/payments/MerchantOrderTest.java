@@ -7,10 +7,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MerchantOrderTest {
+class MerchantOrderTest {
 
     @Test
-    public void testMerchantOrderCreation() {
+    void testMerchantOrderCreation() {
         // Given
         Long orderId = 123L;
         String status = "Pending";
