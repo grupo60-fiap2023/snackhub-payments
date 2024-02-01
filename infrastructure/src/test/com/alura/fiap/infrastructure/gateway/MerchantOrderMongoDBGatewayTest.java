@@ -3,9 +3,11 @@ package com.alura.fiap.infrastructure.gateway;
 import com.alura.fiap.domain.payments.MerchantOrder;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -17,6 +19,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class MerchantOrderMongoDBGatewayTest {
 
     @Mock

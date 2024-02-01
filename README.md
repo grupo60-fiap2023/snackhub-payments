@@ -31,10 +31,10 @@ O projeto SnackHub possui três principais módulos:
 
 ## Domain
 
-Nesse módulo estão presente as nossas classes de dominio, projetadas com a utilização de práticas do DDD.
+Nesse módulo estão presentes as nossas classes de dominio, projetadas com a utilização de práticas do DDD.
 No cenário do Clean Architecture representam as Entities.
 
-As classes presente nesse módulo não possuem nenhuma dependência externa ou de framework.
+As classes presentes nesse módulo não possuem nenhuma dependência externa ou de framework.
 
 ## Application
 
@@ -89,9 +89,9 @@ Todos módulos implementados no serviço possuem testes de unidade implementados
 
 
 ## BDD
-Utilizado o Cumcumber nos BDD.
+Utilizado o Cucumber nos BDD.
 
-![img.png](readmefiles/test-infra.png)
+![img.png](readmefiles/bdd-cucumber.png)
 
 ## Integração
 
