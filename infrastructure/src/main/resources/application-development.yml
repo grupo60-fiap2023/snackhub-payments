@@ -33,3 +33,23 @@ api:
 access:
   token:
     seller: "APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702"
+
+#aws:
+#  region: sa-east-1
+#sqs:
+#  queue:
+#    url: your-sqs-queue-url
+
+localstack:
+  sqs:
+    endpoint: http://localhost:4566
+
+aws:
+  accessKeyId: localhost
+  secretKey: localhost
+
+sqs:
+  queue:
+    order-status: https://localhost.localstack.cloud:4566/000000000000/order-status
+    payment-status-topic: https://localhost.localstack.cloud:4566/000000000000/payment-status-topic
+    order-topic: https://localhost.localstack.cloud:4566/000000000000/order-topic

@@ -54,3 +54,9 @@ api:
 access:
   token:
     seller: "TEST-3823682881313300-012901-0253d629a31919e10fb252ea3991a1e1-1589696702"
+
+aws:
+  region: sa-east-1
+sqs:
+  queue:
+    url: your-sqs-queue-url
