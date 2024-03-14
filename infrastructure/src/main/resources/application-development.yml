@@ -1,9 +1,8 @@
 spring:
   data:
     mongodb:
-      uri: "mongodb+srv://marlonfcosta90:1HhW07spwd7nwnqx@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      uri: "mongodb+srv://marlonfcosta90:X@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
       database: "snackhubpaydev"
-
 
 server:
   port: 8080
@@ -29,9 +28,9 @@ feign:
 
 mp:
   url: "https://api.mercadopago.com"
-  authorization: "Bearer APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702"
-  userId: "1589696702"
-  externalId: "SNACKBARPOTESTSELLER"
+  authorization: "X"
+  userId: "X"
+  externalId: "X"
 
 api:
   qr-server:
@@ -40,7 +39,7 @@ api:
 
 access:
   token:
-    seller: "APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702"
+    seller: "X"
 
 cloud:
   aws:
@@ -66,14 +65,3 @@ cloud:
       notification-queue:
         url: "http://localhost:4566/000000000000/notification-mp-topic"
         name: "notification-mp-topic"
-
-      dead-letter-queue:
-        url: "http://localhost:4566/000000000000/snackhub-pay-queue-dead-letter"
-        name: "snackhub-pay-queue-dead-letter"
-      max-receive-count: 3
-      visibility-timeout: 30
-      delay-seconds: 0
-      message-retention-period: 1209600
-      receive-message-wait-time: 0
-      redrive-policy: "
-      {\"deadLetterTargetArn\":\"arn:aws:sqs:sa-east-1:000000000000:snackhub-pay-queue-dead-letter\",\"maxReceiveCount\":3}"
