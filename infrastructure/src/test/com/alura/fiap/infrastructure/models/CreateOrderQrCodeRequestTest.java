@@ -16,7 +16,8 @@ class CreateOrderQrCodeRequestTest {
         List<OrderQrCodeItemsRequest> items = List.of(
                 new OrderQrCodeItemsRequest("Item1",
                         "unit", 10.0,
-                        2, 20.0));
+                        2, 20.0,
+                        "Item 1 description"));
         Double totalAmount = 29.05;
         OrderQrCodeCashOutRequest cashOut = new OrderQrCodeCashOutRequest(
                 5.0);

@@ -14,9 +14,8 @@ server:
 spring:
   data:
     mongodb:
-      schema: snackhubpay
-      uri: mongodb://localhost
-      port: 27017
+      uri: "mongodb+srv://marlonfcosta90:1HhW07spwd7nwnqx@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      database: "snackhubpay"
     continue-on-error: true
     hikari:
       auto-commit: false
@@ -28,10 +27,14 @@ spring:
 
   jpa:
     open-in-view: false
+
 management:
   endpoint:
     health:
       show-details: always
+  endpoints:
+    web:
+      base-path: /manage
 
 feign:
   client:
@@ -53,4 +56,40 @@ api:
 
 access:
   token:
-    seller: "TEST-3823682881313300-012901-0253d629a31919e10fb252ea3991a1e1-1589696702"
+    seller: "APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702"
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: sa-east-1
+    credentials:
+      access-key: localhost
+      secret-key: localhost
+    end-point:
+      uri: http://localhost:4566
+    queue:
+      order-queue:
+        url: "http://localhost:4566/000000000000/order-topic"
+        name: "order-topic"
+      order-status-queue:
+        url: "http://localhost:4566/000000000000/order-status-topic"
+        name: "order-status-topic"
+      payment-status-queue:
+        url: "http://localhost:4566/000000000000/payment-status-topic"
+        name: "payment-status-topic"
+      notification-queue:
+        url: "http://localhost:4566/000000000000/notification-mp-topic"
+        name: "notification-mp-topic"
+
+      dead-letter-queue:
+        url: "http://localhost:4566/000000000000/snackhub-pay-queue-dead-letter"
+        name: "snackhub-pay-queue-dead-letter"
+      max-receive-count: 3
+      visibility-timeout: 30
+      delay-seconds: 0
+      message-retention-period: 1209600
+      receive-message-wait-time: 0
+      redrive-policy: "
+      {\"deadLetterTargetArn\":\"arn:aws:sqs:sa-east-1:000000000000:snackhub-pay-queue-dead-letter\",\"maxReceiveCount\":3}"

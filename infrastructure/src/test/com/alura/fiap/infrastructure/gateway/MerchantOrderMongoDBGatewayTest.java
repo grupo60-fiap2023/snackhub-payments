@@ -36,7 +36,7 @@ public class MerchantOrderMongoDBGatewayTest {
     @Test
     public void testSaveMerchantOrderPayment() {
         MerchantOrder merchantOrder = new MerchantOrder(15273253461L,
-                "opened", "aWRfcGVkaWRv", Collections.emptyList(),
+                "opened", "aWRfcGVkaWRv","","", Collections.emptyList(),
                 "https://snackhubpay-mercadopago.ultrahook.com", BigDecimal.valueOf(29.05));
         // Criar um objeto MerchantOrder para teste
 
@@ -48,7 +48,7 @@ public class MerchantOrderMongoDBGatewayTest {
     @Test
     public void testRemoveMerchantOrderPayment() {
         MerchantOrder merchantOrder = new MerchantOrder(15273253461L,
-                "opened", "aWRfcGVkaWRv", Collections.emptyList(),
+                "opened", "aWRfcGVkaWRv","","", Collections.emptyList(),
                 "https://snackhubpay-mercadopago.ultrahook.com", BigDecimal.valueOf(29.05));
         // Criar um objeto MerchantOrder para teste
 
@@ -61,7 +61,7 @@ public class MerchantOrderMongoDBGatewayTest {
     public void testFindMerchantOrderPaymentByExternalReference() {
         String externalReference = "TestExternalReference";
         List<MerchantOrder> expectedResult = Collections.singletonList(new MerchantOrder(15273253461L,
-                "opened", "aWRfcGVkaWRv", Collections.emptyList(),
+                "opened", "aWRfcGVkaWRv","","", Collections.emptyList(),
                 "https://snackhubpay-mercadopago.ultrahook.com", BigDecimal.valueOf(29.05)));
         // Criar uma lista de MerchantOrder para teste
 

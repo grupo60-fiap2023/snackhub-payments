@@ -47,6 +47,8 @@ public class NotificationSteps {
                 orderId,
                 "opened",
                 "testecucumberorder",
+                "testecucumberorder",
+                "testecucumberorder",
                 Collections.emptyList(),
                 "notificationtestecucumberorder",
                 BigDecimal.ONE

@@ -14,14 +14,16 @@ public class OrderQrCodeItemTest {
         Double unitPrice = 10.0;
         Integer quantity = 2;
         Double totalAmount = 20.0;
+        String description = "Test Description";
 
-        OrderQrCodeItem orderQrCodeItem = OrderQrCodeItem.with(title, unitMeasure, unitPrice, quantity, totalAmount);
+        OrderQrCodeItem orderQrCodeItem = OrderQrCodeItem.with(title, unitMeasure, unitPrice, quantity, totalAmount, description);
 
         assertThat(orderQrCodeItem.title()).isEqualTo(title);
         assertThat(orderQrCodeItem.unitMeasure()).isEqualTo(unitMeasure);
         assertThat(orderQrCodeItem.unitPrice()).isEqualTo(unitPrice);
         assertThat(orderQrCodeItem.quantity()).isEqualTo(quantity);
         assertThat(orderQrCodeItem.totalAmount()).isEqualTo(totalAmount);
+        assertThat(orderQrCodeItem.description()).isEqualTo(description);
     }
 
     // Adicione mais testes conforme necessário, como testes para outros métodos ou cenários específicos.

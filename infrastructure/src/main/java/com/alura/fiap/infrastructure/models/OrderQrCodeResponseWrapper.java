@@ -2,17 +2,11 @@ package com.alura.fiap.infrastructure.models;
 
 public class OrderQrCodeResponseWrapper {
 
-    private final byte[] mediaType;
-
-    public OrderQrCodeResponseWrapper(byte[] mediaType) {
-        this.mediaType = mediaType;
+    public OrderQrCodeResponseWrapper(OrderQrCodeResponse orderQrCodeResponse) {
     }
 
-    public static OrderQrCodeResponseWrapper with(byte[] mediaType) {
-        return new OrderQrCodeResponseWrapper(mediaType);
+    public static OrderQrCodeResponseWrapper with(OrderQrCodeResponse orderQrCodeResponse) {
+        return new OrderQrCodeResponseWrapper(orderQrCodeResponse);
     }
 
-    public byte[] getMediaType() {
-        return mediaType;
-    }
 }

@@ -1,11 +1,11 @@
 package com.alura.fiap.infrastructure.persistence;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,8 @@ public class DocumentMerchantOrder {
     private final Long orderId;
     private final String status;
     private final String externalReference;
+    private final String title;
+    private final String description;
     private final List<DocumentPayment> documentPayments;
     private final String notificationUrl;
     private final BigDecimal totalAmount;
@@ -28,6 +30,8 @@ public class DocumentMerchantOrder {
             Long orderId,
             String status,
             String externalReference,
+            String title,
+            String description,
             List<DocumentPayment> documentPayments,
             String notificationUrl,
             BigDecimal totalAmount
@@ -38,6 +42,8 @@ public class DocumentMerchantOrder {
         this.orderId = orderId;
         this.status = status;
         this.externalReference = externalReference;
+        this.title = title;
+        this.description = description;
         this.documentPayments = documentPayments != null ? new ArrayList<>(documentPayments) : new ArrayList<>();
         this.notificationUrl = notificationUrl;
         this.totalAmount = totalAmount;
@@ -48,6 +54,8 @@ public class DocumentMerchantOrder {
                 merchantOrder.orderId(),
                 merchantOrder.status(),
                 merchantOrder.externalReference(),
+                merchantOrder.title(),
+                merchantOrder.description(),
                 new ArrayList<>(),
                 merchantOrder.notificationUrl(),
                 merchantOrder.totalAmount()
@@ -78,11 +86,21 @@ public class DocumentMerchantOrder {
         return totalAmount;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public DocumentMerchantOrder withTotalAmount(BigDecimal totalAmount) {
         return new DocumentMerchantOrder(
                 this.orderId,
                 this.status,
                 this.externalReference,
+                this.title,
+                this.description,
                 this.documentPayments,
                 this.notificationUrl,
                 totalAmount

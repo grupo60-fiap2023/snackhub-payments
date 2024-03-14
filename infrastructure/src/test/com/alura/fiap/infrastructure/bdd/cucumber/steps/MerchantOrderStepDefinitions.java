@@ -1,6 +1,7 @@
 package com.alura.fiap.infrastructure.bdd.cucumber.steps;
 
 import com.alura.fiap.application.receive.FindMerchantOrderByExternalReferenceUseCase;
+import com.alura.fiap.application.receive.FindQrDataByOrderIdUseCase;
 import com.alura.fiap.domain.payments.MerchantOrder;
 import com.alura.fiap.infrastructure.api.controllers.MerchantOrderController;
 import io.cucumber.java.en.Given;
@@ -33,6 +34,9 @@ public class MerchantOrderStepDefinitions {
         FindMerchantOrderByExternalReferenceUseCase mockUseCase =
                 mock(FindMerchantOrderByExternalReferenceUseCase.class);
 
+        FindQrDataByOrderIdUseCase mockQrDataUseCase =
+                mock(FindQrDataByOrderIdUseCase.class);
+
         // Stub the execute method to return a predefined response
         ResponseEntity<List<MerchantOrder>> expectedResponse = createExpectedResponse();
         List<MerchantOrder> convertMerchantOrder =
@@ -41,7 +45,7 @@ public class MerchantOrderStepDefinitions {
         Mockito.when(mockUseCase.execute(externalReference)).thenReturn(convertMerchantOrder);
 
         // Create a mock of MerchantOrderController
-        MerchantOrderController controller= new MerchantOrderController(mockUseCase);
+        MerchantOrderController controller= new MerchantOrderController(mockUseCase, mockQrDataUseCase);
 
         // Call the controller method to simulate the request
         response = controller.receiveMerchantOrder(externalReference);
@@ -49,7 +53,7 @@ public class MerchantOrderStepDefinitions {
 
     private ResponseEntity<List<MerchantOrder>> createExpectedResponse() {
         return ResponseEntity.ok(Collections.singletonList(new MerchantOrder(15273253461L,
-                "opened", "aWRfcGVkaWRv", Collections.emptyList(),
+                "opened", "aWRfcGVkaWRv", "", "", Collections.emptyList(),
                 "https://snackhubpay-mercadopago.ultrahook.com", BigDecimal.valueOf(29.05))));
     }
 

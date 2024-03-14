@@ -18,9 +18,11 @@ class MerchantOrderTest {
         List<Payment> payments = List.of(/* create Payment instances */);
         String notificationUrl = "http://example.com/notify";
         BigDecimal totalAmount = new BigDecimal("100.00");
+        String title = "Order 123";
+        String description = "Order 123 description";
 
         // When
-        MerchantOrder merchantOrder = MerchantOrder.with(orderId, status, externalReference, payments, notificationUrl, totalAmount);
+        MerchantOrder merchantOrder = MerchantOrder.with(orderId, status, externalReference, title, description, payments, notificationUrl, totalAmount);
 
         // Then
         assertEquals(orderId, merchantOrder.orderId());
