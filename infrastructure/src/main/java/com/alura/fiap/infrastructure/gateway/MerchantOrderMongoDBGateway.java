@@ -1,6 +1,7 @@
 package com.alura.fiap.infrastructure.gateway;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
+import com.alura.fiap.domain.payments.OrderQrData;
 import com.alura.fiap.domain.payments.MerchantOrderPaymentGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -22,6 +23,11 @@ public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway 
 
 
     @Override
+    public void saveOrderConsumer(OrderQrData orderQrData) {
+        this.mongoTemplate.save(orderQrData);
+    }
+
+    @Override
     public void saveMerchantOrderPayment(MerchantOrder merchantOrder) {
         this.mongoTemplate.save(merchantOrder);
     }
@@ -35,5 +41,12 @@ public class MerchantOrderMongoDBGateway implements MerchantOrderPaymentGateway 
         Query query = new Query();
         query.addCriteria(Criteria.where("externalReference").is(externalReference));
         return this.mongoTemplate.find(query, MerchantOrder.class);
+    }
+
+    @Override
+    public List<OrderQrData> findQRDataPaymentByOrderId(String orderId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("orderId").is(orderId));
+        return this.mongoTemplate.find(query, OrderQrData.class);
     }
 }

@@ -2,63 +2,32 @@ package com.alura.fiap.application.create;
 
 import java.util.List;
 
-public class CreateOrderQrCodeCommand {
+public record CreateOrderQrCodeCommand(
+        String externalReference,
+        String title,
+        String notificationUrl,
+        Double totalAmount,
+        List<CreateOrderQrCodeItemCommand> items,
+        CreateOrderQrCodeCashOutCommand cashOut,
+        String description
+) {
 
-    private final String externalReference;
-    private final String title;
-    private final String notificationUrl;
-    private final Double totalAmount;
-    private final List<CreateOrderQrCodeItemCommand> items;
-    private final CreateOrderQrCodeCashOutCommand cashOut;
-    private final String description;
-
-    public CreateOrderQrCodeCommand(
-            String externalReference,
-            String title,
-            String notificationUrl,
-            Double totalAmount,
-            List<CreateOrderQrCodeItemCommand> items,
-            CreateOrderQrCodeCashOutCommand cashOut,
-            String description
+    public static CreateOrderQrCodeCommand with(
+            final String externalReference,
+            final String title,
+            final String notificationUrl,
+            final Double totalAmount,
+            final List<CreateOrderQrCodeItemCommand> items,
+            final CreateOrderQrCodeCashOutCommand cashOut,
+            final String description
     ) {
-        this.externalReference = externalReference;
-        this.title = title;
-        this.notificationUrl = notificationUrl;
-        this.totalAmount = totalAmount;
-        this.items = items;
-        this.cashOut = cashOut;
-        this.description = description;
+        return new CreateOrderQrCodeCommand(
+                externalReference,
+                title,
+                notificationUrl,
+                totalAmount,
+                items,
+                cashOut,
+                description);
     }
-
-    // Métodos de acesso (getters)
-
-    public String getExternalReference() {
-        return externalReference;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getNotificationUrl() {
-        return notificationUrl;
-    }
-
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
-
-    public List<CreateOrderQrCodeItemCommand> getItems() {
-        return items;
-    }
-
-    public CreateOrderQrCodeCashOutCommand getCashOut() {
-        return cashOut;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    // Outros métodos, se necessário
 }

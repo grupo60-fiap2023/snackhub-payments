@@ -1,6 +1,7 @@
 package com.alura.fiap.application.create;
 
 import com.alura.fiap.domain.payments.MerchantOrderPaymentGateway;
+import com.alura.fiap.domain.payments.SQSEventPublisherGateway;
 import com.mercadopago.client.merchantorder.MerchantOrderClient;
 import com.mercadopago.core.MPRequestOptions;
 import com.mercadopago.exceptions.MPApiException;
@@ -28,13 +29,15 @@ class MerchantOrderPaymentUseCaseTest {
     private MerchantOrderPaymentGateway merchantOrderPaymentGateway;
     @Mock
     private MerchantOrderClient mockClient;
+    @Mock
+    private SQSEventPublisherGateway sqsEventPublisherGateway;
     @InjectMocks
     private MerchantOrderPaymentUseCase merchantOrderPaymentUseCase;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        merchantOrderPaymentUseCase = new MerchantOrderPaymentUseCase(merchantOrderPaymentGateway, TOKEN);
+        merchantOrderPaymentUseCase = new MerchantOrderPaymentUseCase(merchantOrderPaymentGateway, TOKEN, sqsEventPublisherGateway);
     }
 
     @Test

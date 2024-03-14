@@ -5,17 +5,12 @@ import com.alura.fiap.domain.payments.Payment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class DocumentMerchantOrderTest {
@@ -28,6 +23,8 @@ class DocumentMerchantOrderTest {
                 1L,
                 "pending",
                 "extRef123",
+                "",
+                "",
                 paymentList,
                 "http://example.com/notification",
                 BigDecimal.ONE
@@ -58,6 +55,8 @@ class DocumentMerchantOrderTest {
                 1L,
                 "pending",
                 "extRef123",
+                "",
+                "",
                 Collections.emptyList(),
                 "http://example.com/notification",
                 new BigDecimal("100.00")

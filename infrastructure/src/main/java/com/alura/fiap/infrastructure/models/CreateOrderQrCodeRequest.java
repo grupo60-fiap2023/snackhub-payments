@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record CreateOrderQrCodeRequest(
-        @JsonProperty("external_reference") @Schema(description = "Referencia do pedido", example = "aWRfcGVkaWRv")
+        @JsonProperty("external_reference") @Schema(description = "Referencia do pedido", example = "Order ID")
         String externalReference,
-        @JsonProperty("title") @Schema(description = "Titulo da Pedido", example = "Product Order aWRfcGVkaWRv")
+        @JsonProperty("title") @Schema(description = "Titulo da Pedido", example = "Order ID 1 - Customer ID 222 - Order Identifier 333")
         String title,
         @JsonProperty("items") @NotNull @Schema(description = "Lista dos items do pedido")
         List<OrderQrCodeItemsRequest> items,
@@ -19,7 +19,7 @@ public record CreateOrderQrCodeRequest(
         OrderQrCodeCashOutRequest cashOut,
         @JsonProperty("notification_url") @Schema(description = "URL webhook notification", example = "https://snackhubpay-mercadopago.ultrahook.com")
         String notificationUrl,
-        @JsonProperty("description") @NotNull @Schema(description = "Descrição do pedido", example = "Combo+Refil")
+        @JsonProperty("description") @NotNull @Schema(description = "Descrição do pedido", example = "Order ID 1 - Customer ID 222 - Order Identifier 333")
         String description
 ) {
 }

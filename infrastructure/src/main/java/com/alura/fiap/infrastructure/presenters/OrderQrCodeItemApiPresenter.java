@@ -16,7 +16,8 @@ public interface OrderQrCodeItemApiPresenter {
                                 itemRequest.unitMeasure(),
                                 itemRequest.unitPrice(),
                                 itemRequest.quantity(),
-                                itemRequest.totalAmount()
+                                itemRequest.totalAmount(),
+                                itemRequest.description()
                         ))
                 .toList();
     }

@@ -26,7 +26,8 @@ class CreateOrderQrCodeUseCaseTest {
                 "Fake Unit Measure",
                 5.0,  // Fake unit price
                 3,    // Fake quantity
-                15.0  // Fake total amount
+                15.0,  // Fake total amount
+                "Fake Description"
         );
 
         // Mocking command data

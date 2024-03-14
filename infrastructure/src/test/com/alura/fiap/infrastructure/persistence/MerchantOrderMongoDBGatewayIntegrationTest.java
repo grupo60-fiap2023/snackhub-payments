@@ -40,6 +40,8 @@ class MerchantOrderMongoDBGatewayIntegrationTest {
                 1L,
                 "PAID",
                 "externalReference",
+                "title",
+                "description",
                 null,
                 "notificationUrl",
                 BigDecimal.valueOf(100.0)
@@ -56,6 +58,8 @@ class MerchantOrderMongoDBGatewayIntegrationTest {
         assertEquals(merchantOrder.orderId(), foundOrders.get(0).orderId());
         assertEquals(merchantOrder.status(), foundOrders.get(0).status());
         assertEquals(merchantOrder.externalReference(), foundOrders.get(0).externalReference());
+        assertEquals(merchantOrder.title(), foundOrders.get(0).title());
+        assertEquals(merchantOrder.description(), foundOrders.get(0).description());
         assertEquals(merchantOrder.notificationUrl(), foundOrders.get(0).notificationUrl());
         assertEquals(merchantOrder.totalAmount(), foundOrders.get(0).totalAmount());
     }

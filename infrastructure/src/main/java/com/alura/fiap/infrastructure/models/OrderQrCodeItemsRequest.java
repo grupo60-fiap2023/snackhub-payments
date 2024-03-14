@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 public record OrderQrCodeItemsRequest(
 
-        @JsonProperty("title") @NotNull @Schema(description = "title", example = "Combo+Refil product Order aWRfcGVkaWRv")
+        @JsonProperty("title") @NotNull @Schema(description = "title", example = "Customer ID")
         String title,
         @JsonProperty("unit_measure") @NotNull @Schema(description = "unitMeasure", example = "unit")
         String unitMeasure,
@@ -18,6 +18,8 @@ public record OrderQrCodeItemsRequest(
         @JsonProperty("quantity") @NotNull @Schema(description = "quantity", example = "1")
         Integer quantity,
         @JsonProperty("total_amount") @NotNull @Schema(description = "totalAmount", example = "29.05")
-        Double totalAmount
+        Double totalAmount,
+        @JsonProperty("description") @NotNull @Schema(description = "description", example = "Order Identifier")
+        String description
 ) {
 }

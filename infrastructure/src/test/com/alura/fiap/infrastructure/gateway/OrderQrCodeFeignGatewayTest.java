@@ -82,7 +82,8 @@ public class OrderQrCodeFeignGatewayTest {
                 "unitMeasure",
                 10.0,
                 2,
-                20.0
+                20.0,
+                "description"
         );
 
         CreateOrderQrCodeRequest expectedCreateOrderRequest = new CreateOrderQrCodeRequest(

@@ -22,7 +22,7 @@ class FindMerchantOrderByExternalReferenceUseCaseTest {
         MerchantOrderPaymentGateway mockGateway = mock(MerchantOrderPaymentGateway.class);
 
         List<MerchantOrder> expectedMerchantOrders = Collections.singletonList(new MerchantOrder(1L,
-                "approved", "ABC123", Collections.emptyList(), "notificationUrl", BigDecimal.ONE));
+                "approved", "ABC123","", "", Collections.emptyList(), "notificationUrl", BigDecimal.ONE));
         when(mockGateway.findMerchantOrderPaymentByExternalReference(anyString())).thenReturn(expectedMerchantOrders);
 
         FindMerchantOrderByExternalReferenceUseCase useCase = new FindMerchantOrderByExternalReferenceUseCase(mockGateway);

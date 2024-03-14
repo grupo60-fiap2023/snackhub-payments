@@ -1,6 +1,7 @@
 package com.alura.fiap.infrastructure.api;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
+import com.alura.fiap.domain.payments.OrderQrData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,7 +21,7 @@ public interface MerchantOrderAPI {
     @GetMapping(value = "receiveMerchantOrder/{externalReference}")
     @Operation(summary = "Receive Merchant Order by externalReference", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Created successfully"),
+            @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad Request"),
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "404", description = "Not Found"),
@@ -28,4 +29,18 @@ public interface MerchantOrderAPI {
     })
     ResponseEntity<List<MerchantOrder>> receiveMerchantOrder(
             @PathVariable @Schema(description = "Referência do pedido", example = "aWRfcGVkaWRv") String externalReference);
+
+
+
+    @GetMapping(value = "receiveQrDataPayment/{orderId}")
+    @Operation(summary = "Receive QRdata by orderId", security = @SecurityRequirement(name = "bearerAuth"))
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "404", description = "Not Found"),
+            @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
+    })
+    ResponseEntity<List<OrderQrData>> receiveQrDataPayment(
+            @PathVariable @Schema(description = "Order Id", example = "33") String orderId);
 }

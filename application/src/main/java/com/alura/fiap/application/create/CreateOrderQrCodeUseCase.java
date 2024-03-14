@@ -10,7 +10,6 @@ import com.alura.fiap.domain.payments.OrderQrCodeItem;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class CreateOrderQrCodeUseCase extends AuthUseCase<CreateOrderQrCodeCommand, OrderQrCodeOutput> {
     private final OrderQrCodeGateway orderQrCodeGateway;
@@ -20,22 +19,27 @@ public class CreateOrderQrCodeUseCase extends AuthUseCase<CreateOrderQrCodeComma
     }
 
     @Override
-    public OrderQrCodeOutput execute(String authorization, CreateOrderQrCodeCommand command, String userId, String externalPosId) {
+    public OrderQrCodeOutput execute(String authorization,
+                                     CreateOrderQrCodeCommand command,
+                                     String userId,
+                                     String externalPosId) {
 
-        List<OrderQrCodeItem> items = command.getItems().stream()
+        List<OrderQrCodeItem> items = command.items().stream()
                 .map(item -> OrderQrCodeItem.with(
                         item.title(),
                         item.unitMeasure(),
                         item.unitPrice(),
                         item.quantity(),
-                        item.totalAmount()
+                        item.totalAmount(),
+                        item.description()
                 )).toList();
 
-        var cashOut = new OrderQrCodeCashOut(command.getCashOut().amount());
+        var cashOut = new OrderQrCodeCashOut(command.cashOut().amount());
 
-        var orderQrCode = new OrderQrCode(command.getExternalReference(), command.getTitle(), command.getNotificationUrl(),
-                command.getTotalAmount(), items, cashOut, command.getDescription());
+        var orderQrCode = new OrderQrCode(command.externalReference(), command.title(), command.notificationUrl(),
+                command.totalAmount(), items, cashOut, command.description());
 
         return OrderQrCodeOutput.from(this.orderQrCodeGateway.createOrderQRCode(authorization, orderQrCode, userId, externalPosId));
     }
+
 }
