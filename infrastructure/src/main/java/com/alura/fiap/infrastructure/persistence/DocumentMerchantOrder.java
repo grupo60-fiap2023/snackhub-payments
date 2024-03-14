@@ -1,11 +1,11 @@
 package com.alura.fiap.infrastructure.persistence;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

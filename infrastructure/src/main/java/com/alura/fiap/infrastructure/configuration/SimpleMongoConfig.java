@@ -17,7 +17,7 @@ public class SimpleMongoConfig {
     @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
 
-    @Value("${spring.data.mongodb.schema}")
+    @Value("${spring.data.mongodb.database}")
     private String schema;
 
     @Bean

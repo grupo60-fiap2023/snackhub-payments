@@ -1,12 +1,12 @@
 spring:
   data:
     mongodb:
-      schema: snackhubpaydev
-      uri: mongodb://localhost
-      port: 27017
+      uri: "mongodb+srv://marlonfcosta90:1HhW07spwd7nwnqx@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      database: "snackhubpaydev"
+
 
 server:
-  port: 8090
+  port: 8080
   undertow:
     threads:
       worker: 10

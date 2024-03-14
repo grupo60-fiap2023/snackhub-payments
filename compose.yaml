@@ -7,8 +7,6 @@ services:
     image: 'mongo:6.0.13'
     environment:
       - MONGO_INITDB_DATABASE=snackhubpay
-      - MONGO_INITDB_ROOT_USERNAME=
-      - MONGO_INITDB_ROOT_PASSWORD=
     ports:
       - "27017"
     networks:
