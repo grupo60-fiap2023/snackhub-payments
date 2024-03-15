@@ -29,7 +29,7 @@ class MerchantOrderPaymentUseCaseTest {
     private MerchantOrderPaymentGateway merchantOrderPaymentGateway;
     @Mock
     private MerchantOrderClient mockClient;
-    @Mock
+   @Mock
     private SQSEventPublisherGateway sqsEventPublisherGateway;
     @InjectMocks
     private MerchantOrderPaymentUseCase merchantOrderPaymentUseCase;

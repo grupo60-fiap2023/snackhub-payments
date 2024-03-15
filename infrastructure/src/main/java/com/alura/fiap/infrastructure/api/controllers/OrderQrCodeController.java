@@ -22,7 +22,7 @@ public class OrderQrCodeController implements OrderQrCodeAPI {
     }
 
     @Override
-    public void createOrderQrCode(String authorization, CreateOrderQrCodeRequest request, String userId, String externalPosId) {
+    public ResponseEntity<OrderQrCodeResponse> createOrderQrCode(String authorization, CreateOrderQrCodeRequest request, String userId, String externalPosId) {
         OrderQrCodeResponse response;
 
         var items = OrderQrCodeItemApiPresenter.present(request.items());
@@ -37,8 +37,12 @@ public class OrderQrCodeController implements OrderQrCodeAPI {
                 request.description());
 
         var orderQrCode = this.createOrderQrCodeUseCase.execute(authorization, command, userId, externalPosId);
-        response = OrderQrCodeApiPresenter.present(orderQrCode).getOrderQrCodeResponse();
 
-        ResponseEntity.status(HttpStatus.CREATED).body(response);
+        if (orderQrCode != null) {
+            response = OrderQrCodeApiPresenter.present(orderQrCode).getOrderQrCodeResponse();
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

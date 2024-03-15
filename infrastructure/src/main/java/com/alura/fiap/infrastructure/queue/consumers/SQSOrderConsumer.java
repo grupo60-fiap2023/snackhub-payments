@@ -1,12 +1,15 @@
-package com.alura.fiap.infrastructure.consumers;
+package com.alura.fiap.infrastructure.queue.consumers;
 
 import com.alura.fiap.infrastructure.api.OrderQrCodeAPI;
 import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderConsumer;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
+import com.amazonaws.services.sqs.AmazonSQSAsync;
+import com.amazonaws.services.sqs.model.Message;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.awspring.cloud.messaging.listener.SqsMessageDeletionPolicy;
 import io.awspring.cloud.messaging.listener.annotation.SqsListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,32 +29,31 @@ public class SQSOrderConsumer {
     private final String userId;
     private final String externalId;
     private final OrderQrCodeAPI orderQrCodeAPI;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(SQSOrderConsumer.class);
+    private final AmazonSQSAsync amazonSQSAsync;
 
     public SQSOrderConsumer(@Value("${mp.authorization}") String authorization,
                             @Value("${mp.userId}") String userId,
                             @Value("${mp.externalId}") String externalId,
-                            OrderQrCodeAPI orderQrCodeAPI) {
+                            OrderQrCodeAPI orderQrCodeAPI, AmazonSQSAsync amazonSQSAsync) {
         this.authorization = authorization;
         this.userId = userId;
         this.externalId = externalId;
         this.orderQrCodeAPI = orderQrCodeAPI;
+        this.amazonSQSAsync = amazonSQSAsync;
     }
 
-    @SqsListener("${cloud.aws.queue.order-queue.name}")
-    public void receiveMessage(String message) {
+
+    @SqsListener(value = "${cloud.aws.queue.receive-order-queue.name}", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+    public void receiveMessage(Message message) {
         LOGGER.info("SQS Message Received : {}", message);
+
+            LOGGER.info("Read Message from queue: {}", message.getBody());
+            amazonSQSAsync.deleteMessage(String.valueOf(message), message.getReceiptHandle());
 
         try {
             Gson gson = new GsonBuilder().create();
-            OrderConsumer orderConsumer = gson.fromJson(message, OrderConsumer.class);
-
-            //externalReference -- orderConsumer.getOrderId().toString() -- orderId
-            //dentro do item title --- orderConsumer.getCustomerId().toString(), -- customerId
-            //dentro do item description ---- orderConsumer.getOrderIdentifier() -- orderIdentifier
-
-            //Order ID 1 - Customer ID 222 - Order Identifier 333
+            OrderConsumer orderConsumer = gson.fromJson(String.valueOf(message), OrderConsumer.class);
 
             CreateOrderQrCodeRequest createOrderQrCodeRequest = new CreateOrderQrCodeRequest(
                     orderConsumer.getOrderId().toString(),

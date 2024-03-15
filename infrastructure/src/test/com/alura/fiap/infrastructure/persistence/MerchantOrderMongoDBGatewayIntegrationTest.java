@@ -42,7 +42,7 @@ class MerchantOrderMongoDBGatewayIntegrationTest {
                 "externalReference",
                 "title",
                 "description",
-                null,
+                List.of(),
                 "notificationUrl",
                 BigDecimal.valueOf(100.0)
         );

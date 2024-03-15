@@ -21,6 +21,7 @@ import static com.alura.fiap.application.execeptions.HandlerException.handleExce
 
 public class MerchantOrderPaymentUseCase {
 
+
     private static final Logger logger = LoggerFactory.getLogger(MerchantOrderPaymentUseCase.class);
     public static final String MERCHANT_ORDER = "merchant_order";
     private final String accessTokenSeller;
@@ -49,7 +50,7 @@ public class MerchantOrderPaymentUseCase {
                     merchantOrderResourceMP.getPayments().forEach(payment -> logger.info("Processing payment with ID: {}", payment.getId()));
                     payments = convertToPayment(merchantOrderResourceMP.getPayments().stream().toList());
 
-                    this.merchantOrderPaymentGateway.saveMerchantOrderPayment(getMerchantOrder(merchantOrderResourceMP, payments));
+                        this.merchantOrderPaymentGateway.saveMerchantOrderPayment(getMerchantOrder(merchantOrderResourceMP, payments));
                     logger.info("Save in Data Base : Order ID {}", merchantOrderResourceMP.getExternalReference());
 
 

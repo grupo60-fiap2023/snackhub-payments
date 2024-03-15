@@ -5,23 +5,25 @@ import com.alura.fiap.application.create.CreateImageQrCodeUseCase;
 import com.alura.fiap.application.create.CreateOrderQrCodeCommand;
 import com.alura.fiap.application.create.CreateOrderQrCodeUseCase;
 import com.alura.fiap.domain.payments.OrderQrCodeGateway;
-import com.alura.fiap.domain.payments.OrderQrCodeOut;
 import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
-import com.alura.fiap.infrastructure.models.OrderQrCodeResponseWrapper;
+import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
 import com.alura.fiap.infrastructure.presenters.wrapper.OrderQrCodeApiPresenter;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 class OrderQrCodeControllerTest {
@@ -31,8 +33,6 @@ class OrderQrCodeControllerTest {
 
     @Mock
     CreateOrderQrCodeUseCase createOrderQrCodeUseCase;
-    @Mock
-    CreateImageQrCodeUseCase createImageQrCodeUseCase;
     @Mock
     OrderQrCodeGateway orderQrCodeGateway;
     @Mock
@@ -45,36 +45,41 @@ class OrderQrCodeControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
- /*   @Test
+    @Test
     void testCreateMerchantOrderQrCode() {
+        // Criar uma instância real de OrderQrCodeOutput
+        OrderQrCodeOutput orderQrCodeOutput = new OrderQrCodeOutput("inStoreOrderId", "qrData");
 
-        when(createOrderQrCodeUseCase.execute(anyString(), any(CreateOrderQrCodeCommand.class), anyString(), anyString())).thenReturn(OrderQrCodeOutput.from(OrderQrCodeOut.createOrderQrCodeOut("8d2d0b8d-dcef-43d1-9f20-7ac300945f39", "00020101021243650016COM.MERCADOLIBRE0201306368d2d0b8d-dcef-43d1-9f20-7ac300945f395204000053039865802BR5908Snackhub6009SAO PAULO62070503***630425EC")));
+        // Configurar o comportamento do createOrderQrCodeUseCase para retornar a instância real
+        when(createOrderQrCodeUseCase.execute(anyString(), any(CreateOrderQrCodeCommand.class), anyString(), anyString()))
+                .thenReturn(orderQrCodeOutput);
 
-        ResponseEntity<OrderQrCodeResponse> response = this.orderQrCodeController.createMerchantOrderQrCode(
-                "auth", "token",
+
+        ResponseEntity<OrderQrCodeResponse> response = orderQrCodeController.createOrderQrCode(
+                "auth",
                 new CreateOrderQrCodeRequest(
-                        "TEST-CUCUMBERQRCODEWRfcGVkaWRv",
-                        "TEST-CUCUMBERQRCODE Product OrderFromJsonString aWRfcGVkaWRv",
+                        "orderId",
+                        "TEST-CUCUMBERQRCODE Product Order orderId",
                         Collections.singletonList(
                                 new OrderQrCodeItemsRequest(
-                                        "Combo+Refil product OrderFromJsonString aWRfcGVkaWRv",
+                                        "customerId",
                                         "unit",
                                         29.05,
                                         1,
-                                        29.05
-                                )
-                        ),
+                                        29.05,
+                                        "identifierId")),
                         29.05,
                         new OrderQrCodeCashOutRequest(0.0),
                         "https://testsnackhubpay-mercadopago.ultrahook.com",
                         "TEST-CUCUMBERQRCODE Combo+Refil"),
-                "userId",
-                "posId");
+                "userId", "posId");
 
-        // Verifique se o método do caso de uso foi chamado com os argumentos corretos
-        verify(createOrderQrCodeUseCase).execute(eq("auth"), any(CreateOrderQrCodeCommand.class), eq("userId"), eq("posId"));
+        // Verificação se o método execute() foi chamado corretamente
+        verify(createOrderQrCodeUseCase, times(1)).execute(anyString(), any(CreateOrderQrCodeCommand.class), anyString(), anyString());
 
-        // Verifique se a resposta não é nula
-        Assertions.assertNotNull(response);
-    }*/
+        // Verificação se a resposta é um ResponseEntity com status de created
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    }
+
+
 }

@@ -53,7 +53,7 @@ public class MerchantOrderStepDefinitions {
 
     private ResponseEntity<List<MerchantOrder>> createExpectedResponse() {
         return ResponseEntity.ok(Collections.singletonList(new MerchantOrder(15273253461L,
-                "opened", "aWRfcGVkaWRv", "", "", Collections.emptyList(),
+                "opened", "orderId", "", "", Collections.emptyList(),
                 "https://snackhubpay-mercadopago.ultrahook.com", BigDecimal.valueOf(29.05))));
     }
 

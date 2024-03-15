@@ -1,9 +1,8 @@
 spring:
   data:
     mongodb:
-      uri: "mongodb+srv://marlonfcosta90:1HhW07spwd7nwnqx@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      uri: "mongodb+srv://marlonfcosta90:XXXXXXXXXXX@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
       database: "snackhubpaydev"
-
 
 server:
   port: 8080
@@ -28,52 +27,40 @@ feign:
     enable: true
 
 mp:
-  url: "https://api.mercadopago.com"
-  authorization: "Bearer APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702"
-  userId: "1589696702"
-  externalId: "SNACKBARPOTESTSELLER"
+  url: https://api.mercadopago.com
+  authorization: XXXXXXXXXXX
+  userId: XXXXXXXXXXXXXXXXXXXX
+  externalId: XXXXXXXXXXXXXXXX
 
 api:
   qr-server:
     create-qr-code:
-      url: "https://api.qrserver.com/v1/create-qr-code"
+      url: https://api.qrserver.com/v1/create-qr-code
 
 access:
   token:
-    seller: "APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702"
+    seller: XXXXXXXXXXXX
 
 cloud:
   aws:
     stack:
       auto: false
     region:
-      static: sa-east-1
+      static: us-east-1
     credentials:
-      access-key: localhost
-      secret-key: localhost
-    end-point:
-      uri: http://localhost:4566
+      access-key: XXXXXXXXXXX
+      secret-key: XXXXXXXXXXX
+      use-default-aws-credentials-chain: false
+      instance-profile: false
+    endpoint:
+      uri: https://mfc24cloud.signin.aws.amazon.com/
     queue:
-      order-queue:
-        url: "http://localhost:4566/000000000000/order-topic"
-        name: "order-topic"
+      receive-order-queue:
+        url: https://sqs.us-east-1.amazonaws.com/590184044125/receive-order-topic
+        name: receive-order-topic
       order-status-queue:
-        url: "http://localhost:4566/000000000000/order-status-topic"
-        name: "order-status-topic"
+        url: https://sqs.us-east-1.amazonaws.com/590184044125/order-status-topic
+        name: order-status-topic
       payment-status-queue:
-          url: "http://localhost:4566/000000000000/payment-status-topic"
-          name: "payment-status-topic"
-      notification-queue:
-        url: "http://localhost:4566/000000000000/notification-mp-topic"
-        name: "notification-mp-topic"
-
-      dead-letter-queue:
-        url: "http://localhost:4566/000000000000/snackhub-pay-queue-dead-letter"
-        name: "snackhub-pay-queue-dead-letter"
-      max-receive-count: 3
-      visibility-timeout: 30
-      delay-seconds: 0
-      message-retention-period: 1209600
-      receive-message-wait-time: 0
-      redrive-policy: "
-      {\"deadLetterTargetArn\":\"arn:aws:sqs:sa-east-1:000000000000:snackhub-pay-queue-dead-letter\",\"maxReceiveCount\":3}"
+        url: https://sqs.us-east-1.amazonaws.com/590184044125/payment-status-topic
+        name: payment-status-topic

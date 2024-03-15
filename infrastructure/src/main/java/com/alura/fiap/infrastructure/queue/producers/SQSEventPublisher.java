@@ -1,4 +1,4 @@
-package com.alura.fiap.infrastructure.producers;
+package com.alura.fiap.infrastructure.queue.producers;
 
 import com.alura.fiap.domain.payments.OrderStatusProducer;
 import com.alura.fiap.domain.payments.PaymentStatusProducer;
@@ -9,9 +9,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class SQSEventPublisher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SQSEventPublisher.class);

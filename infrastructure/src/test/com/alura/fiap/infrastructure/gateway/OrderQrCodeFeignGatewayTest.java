@@ -1,12 +1,12 @@
 package com.alura.fiap.infrastructure.gateway;
 
-import com.alura.fiap.domain.payments.OrderQrCode;
-import com.alura.fiap.domain.payments.OrderQrCodeCashOut;
+import com.alura.fiap.domain.payments.*;
 import com.alura.fiap.infrastructure.feign.client.MPIntegrationGateway;
 import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
+import com.alura.fiap.infrastructure.queue.producers.SQSEventPublisher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
+import java.util.Objects;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
@@ -31,6 +32,12 @@ public class OrderQrCodeFeignGatewayTest {
     @Mock
     MPIntegrationGateway mpIntegrationGateway;
 
+    @Mock
+    SQSEventPublisher sqsEventPublisher;
+
+    @Mock
+    MerchantOrderPaymentGateway merchantOrderPaymentGateway;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -38,30 +45,49 @@ public class OrderQrCodeFeignGatewayTest {
 
     @Test
     public void testCreateOrderQRCode() {
+        // Configuração do mock de resposta
         String authorization = "testAuthorization";
         String userId = "testUserId";
         String externalPosId = "testExternalPosId";
 
         OrderQrCode request = new OrderQrCode(
-                "externalReference",
+                "orderId",
                 "title",
                 "notificationUrl",
                 29.05,
-                Collections.emptyList(),
+                Collections.singletonList(new OrderQrCodeItem(
+                        "customerId",
+                        "unitMeasure"
+                        , 10.0, 2,
+                        20.0,
+                        "IdentifierId")),
+
                 new OrderQrCodeCashOut(0.0),
                 "description"
         );
 
-        CreateOrderQrCodeRequest expectedCreateOrderRequest = getCreateOrderQrCodeRequest();
-
         OrderQrCodeResponse mockOrderQrCodeResponse = new OrderQrCodeResponse("inStoreOrderId", "qrData");
-        ResponseEntity<OrderQrCodeResponse> mockResponseEntity = ResponseEntity.ok(mockOrderQrCodeResponse);
-        ;
+
+
+        OrderQrData mockOrderQrData = new OrderQrData(
+                "orderId",
+                "customerId",
+                "IdentifierId",
+                "inStoreOrderId",
+                "qrData"
+        );
         // Configurar o comportamento do mock
-        when(mpIntegrationGateway.createOrderQRCode(anyString(), any(CreateOrderQrCodeRequest.class), anyString(), anyString())).thenReturn(mockResponseEntity);
+        doNothing().when(merchantOrderPaymentGateway).saveOrderConsumer(mockOrderQrData);
 
-        orderQrCodeFeignGateway.createOrderQRCode(authorization, request, userId, externalPosId);
+        when(mpIntegrationGateway.createOrderQRCode(anyString(), any(CreateOrderQrCodeRequest.class), anyString(), anyString())).thenReturn(ResponseEntity.ok(mockOrderQrCodeResponse));
 
+        // Chamada do método a ser testado
+        OrderQrCodeOut orderQRCode = orderQrCodeFeignGateway.createOrderQRCode(authorization, request, userId, externalPosId);
+
+        // Verificações
+        assertThat(orderQRCode).isNotNull();  // Verifica se o resultado não é nulo
+        assertThat(orderQRCode.inStoreOrderId()).isEqualTo("inStoreOrderId");
+        assertThat(orderQRCode.qrData()).isEqualTo("qrData");
         verify(mpIntegrationGateway, Mockito.times(1)).createOrderQRCode(anyString(), any(CreateOrderQrCodeRequest.class), anyString(), anyString());
 
         System.out.println("In Store Order ID: Expected: " + mockOrderQrCodeResponse.inStoreOrderId() + ", Actual: " + "inStoreOrderId");
@@ -75,6 +101,7 @@ public class OrderQrCodeFeignGatewayTest {
         // Adicione verificações de chamada adicionais
         verify(mpIntegrationGateway, times(1)).createOrderQRCode(anyString(), any(CreateOrderQrCodeRequest.class), anyString(), anyString());
     }
+
 
     private static CreateOrderQrCodeRequest getCreateOrderQrCodeRequest() {
         OrderQrCodeItemsRequest expectedItemRequest = new OrderQrCodeItemsRequest(
