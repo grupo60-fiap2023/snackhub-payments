@@ -46,11 +46,7 @@ public class SQSOrderConsumer {
 
     @SqsListener(value = "${cloud.aws.queue.receive-order-queue.name}", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
     public void receiveMessage(Message message) {
-        LOGGER.info("SQS Message Received : {}", message);
-
             LOGGER.info("Read Message from queue: {}", message.getBody());
-            amazonSQSAsync.deleteMessage(String.valueOf(message), message.getReceiptHandle());
-
         try {
             Gson gson = new GsonBuilder().create();
             OrderConsumer orderConsumer = gson.fromJson(String.valueOf(message), OrderConsumer.class);
@@ -77,6 +73,7 @@ public class SQSOrderConsumer {
                             " Customer Id: " + orderConsumer.getOrderIdentifier() +
                             " Order Identifier: " + orderConsumer.getOrderIdentifier());
 
+            amazonSQSAsync.deleteMessage(String.valueOf(message), message.getReceiptHandle());
             orderQrCodeAPI.createOrderQrCode(authorization, createOrderQrCodeRequest, userId, externalId);
         } catch (NumberFormatException | NullPointerException e) {
             LOGGER.error("Error processing SQS message: {}", e.getMessage(), e);
