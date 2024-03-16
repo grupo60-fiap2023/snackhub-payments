@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Profile;
 @Profile({"development", "test"})
 public class MongoClientConnection {
     public static void main(String[] args) {
-        String connectionString = "mongodb+srv://marlonfcosta90:1HhW07spwd7nwnqx@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+        String connectionString = "mongodb+srv://marlonfcosta90:X@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
         // Configurar a API do servidor MongoDB
         ServerApi serverApi = ServerApi.builder()
