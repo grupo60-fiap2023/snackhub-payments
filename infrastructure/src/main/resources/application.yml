@@ -68,8 +68,8 @@ cloud:
     region:
       static: us-east-1
     credentials:
-      access-key: ${{ secrets.AWS_PAY_ACCESS_KEY_ID }}
-      secret-key: ${{ secrets.AWS_PAY_SECRET_ACCESS_KEY }}
+      access-key: XXXXXXXXXX
+      secret-key: XXXXXXXXXX
       use-default-aws-credentials-chain: false
       instance-profile: false
     endpoint:
