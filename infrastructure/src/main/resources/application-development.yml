@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: "mongodb+srv://marlonfcosta90:X@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      uri: "mongodb+srv://marlonfcosta90:1HhW07spwd7nwnqx@cluster0.onm2dkj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
       database: "snackhubpaydev"
 
 server:
@@ -31,7 +31,6 @@ mp:
   authorization: Bearer APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702
   userId: 1589696702
   externalId: SNACKBARPOTESTSELLER
-  url: "https://api.mercadopago.com"
 
 api:
   qr-server:
@@ -42,8 +41,6 @@ access:
   token:
     seller: APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702
 
-
-
 cloud:
   aws:
     stack:
@@ -51,8 +48,8 @@ cloud:
     region:
       static: us-east-1
     credentials:
-      access-key: XXXXXXXXX
-      secret-key: XXXXXXXXX
+      access-key: AKIAYS2NV2ZOVDEG7CPX
+      secret-key: 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
       use-default-aws-credentials-chain: false
       instance-profile: false
     endpoint:
