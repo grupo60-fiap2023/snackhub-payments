@@ -72,9 +72,8 @@ public class SQSOrderConsumer {
                     "Order ID: " + orderConsumer.getOrderId().toString() +
                             " Customer Id: " + orderConsumer.getOrderIdentifier() +
                             " Order Identifier: " + orderConsumer.getOrderIdentifier());
-
-            amazonSQSAsync.deleteMessage(String.valueOf(message), message.getReceiptHandle());
             orderQrCodeAPI.createOrderQrCode(authorization, createOrderQrCodeRequest, userId, externalId);
+            amazonSQSAsync.deleteMessage(String.valueOf(message), message.getReceiptHandle());
         } catch (NumberFormatException | NullPointerException e) {
             LOGGER.error("Error processing SQS message: {}", e.getMessage(), e);
         }

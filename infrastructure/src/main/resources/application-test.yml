@@ -12,10 +12,10 @@ api:
 
 access:
   token:
-    seller: XXXXXXXXXXXXXXX
+    seller: APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702
 
 mp:
   url: https://api.mercadopago.com
-  authorization: XXXXXXXXXXX
-  userId: XXXXXXXXXX
-  externalId: XXXXXXXXXXXXXX
+  authorization: Bearer APP_USR-3823682881313300-012901-e7d2a4ceac371c9774c46ee0297208db-1589696702
+  userId: 1589696702
+  externalId: SNACKBARPOTESTSELLER
