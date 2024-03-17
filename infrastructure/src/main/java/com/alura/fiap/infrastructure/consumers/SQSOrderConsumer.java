@@ -7,6 +7,7 @@ import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.awspring.cloud.messaging.listener.SqsMessageDeletionPolicy;
 import io.awspring.cloud.messaging.listener.annotation.SqsListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,19 +40,12 @@ public class SQSOrderConsumer {
         this.orderQrCodeAPI = orderQrCodeAPI;
     }
 
-    @SqsListener("${cloud.aws.queue.order-queue.name}")
+    @SqsListener(value = "${cloud.aws.queue.order-queue.name}", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
     public void receiveMessage(String message) {
-        LOGGER.info("SQS Message Received : {}", message);
-
+        LOGGER.info("Read Message from queue: {}", message);
         try {
             Gson gson = new GsonBuilder().create();
-            OrderConsumer orderConsumer = gson.fromJson(message, OrderConsumer.class);
-
-            //externalReference -- orderConsumer.getOrderId().toString() -- orderId
-            //dentro do item title --- orderConsumer.getCustomerId().toString(), -- customerId
-            //dentro do item description ---- orderConsumer.getOrderIdentifier() -- orderIdentifier
-
-            //Order ID 1 - Customer ID 222 - Order Identifier 333
+            OrderConsumer orderConsumer = gson.fromJson(String.valueOf(message), OrderConsumer.class);
 
             CreateOrderQrCodeRequest createOrderQrCodeRequest = new CreateOrderQrCodeRequest(
                     orderConsumer.getOrderId().toString(),
@@ -62,19 +56,18 @@ public class SQSOrderConsumer {
                             new OrderQrCodeItemsRequest(
                                     orderConsumer.getCustomerId().toString(),
                                     UNIT,
-                                    orderConsumer.getTotalAmount(),
+                                    orderConsumer.getValue(),
                                     QUANTITY,
-                                    orderConsumer.getTotalAmount(),
+                                    orderConsumer.getValue(),
                                     orderConsumer.getOrderIdentifier()
                             )
                     ),
-                    orderConsumer.getTotalAmount(),
+                    orderConsumer.getValue(),
                     new OrderQrCodeCashOutRequest(AMOUNT),
                     NOTIFICATION_URL,
                     "Order ID: " + orderConsumer.getOrderId().toString() +
                             " Customer Id: " + orderConsumer.getOrderIdentifier() +
                             " Order Identifier: " + orderConsumer.getOrderIdentifier());
-
             orderQrCodeAPI.createOrderQrCode(authorization, createOrderQrCodeRequest, userId, externalId);
         } catch (NumberFormatException | NullPointerException e) {
             LOGGER.error("Error processing SQS message: {}", e.getMessage(), e);

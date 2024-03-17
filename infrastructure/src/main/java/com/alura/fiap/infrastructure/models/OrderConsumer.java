@@ -5,7 +5,7 @@ public class OrderConsumer {
     private Long orderId;
     private Long customerId;
     private String orderIdentifier;
-    private Double totalAmount;
+    private Double value;
 
 
     public Long getOrderId() {
@@ -32,11 +32,11 @@ public class OrderConsumer {
         this.orderIdentifier = orderIdentifier;
     }
 
-    public Double getTotalAmount() {
-        return totalAmount;
+    public Double getValue() {
+        return value;
     }
 
-    public void setTotalAmount(Double totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setValue(Double value) {
+        this.value = value;
     }
 }

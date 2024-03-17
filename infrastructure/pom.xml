@@ -34,9 +34,8 @@
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>sqs</artifactId>
-            <version>2.25.7</version> <!-- Substitua x.x pela versão mais recente -->
+            <version>2.25.7</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
         <dependency>
             <groupId>javax.json</groupId>
             <artifactId>javax.json-api</artifactId>

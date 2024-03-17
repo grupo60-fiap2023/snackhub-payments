@@ -1,3 +1,4 @@
+/*
 package com.alura.fiap.infrastructure.consumers;
 
 import com.alura.fiap.infrastructure.models.NotificationConsumer;
@@ -10,7 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SQSNotificationConsumer {
 
- /*   private final SqsClient sqsClient;
+ */
+/*   private final SqsClient sqsClient;
 
     public SQSNotificationConsumer(SqsClient sqsClient) {
         this.sqsClient = sqsClient;
@@ -29,7 +31,8 @@ public class SQSNotificationConsumer {
             // Processar a notificação recebida da fila SQS
             System.out.println("Notification received from SQS: " + notification);
         }
-    }*/
+    }*//*
+
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SQSNotificationConsumer.class);
 
@@ -46,4 +49,4 @@ public class SQSNotificationConsumer {
         }
 
     }
-}
+}*/

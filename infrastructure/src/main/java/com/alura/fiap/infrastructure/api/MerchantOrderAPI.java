@@ -28,12 +28,12 @@ public interface MerchantOrderAPI {
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
     ResponseEntity<List<MerchantOrder>> receiveMerchantOrder(
-            @PathVariable @Schema(description = "Referência do pedido", example = "aWRfcGVkaWRv") String externalReference);
+            @PathVariable @Schema(description = "Referência do pedido - externalReference do MP - OrderId do APP", example = "33333") String externalReference);
 
 
 
     @GetMapping(value = "receiveQrDataPayment/{orderId}")
-    @Operation(summary = "Receive QRdata by orderId", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Receive QRData by orderId", security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad Request"),

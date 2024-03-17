@@ -19,8 +19,8 @@ import java.util.Objects;
 @Component
 public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
 
-    public static final String PENDING_PAYMENT = "pending_payment";
-    private static Logger logger = LoggerFactory.getLogger(OrderQrCodeFeignGateway.class);
+    public static final String PENDING_PAYMENT = "PENDING_PAYMENT";
+    private static final Logger logger = LoggerFactory.getLogger(OrderQrCodeFeignGateway.class);
     private final MPIntegrationGateway mpIntegrationGateway;
 
     private final SQSEventPublisher sqsEventPublisher;
