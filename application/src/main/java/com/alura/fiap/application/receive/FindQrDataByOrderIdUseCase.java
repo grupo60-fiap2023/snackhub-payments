@@ -24,7 +24,7 @@ public class FindQrDataByOrderIdUseCase {
 
         if (orderQrData.isEmpty()) {
             LOGGER.warn("No orderQrData found for the orderId: {}", orderQrData);
-            throw new MerchantOrderNotFoundException("No orderQrData found for the orderId: " + orderQrData);
+            throw new MerchantOrderNotFoundException("No orderQrData found for the orderId: " + orderId);
         }
         LOGGER.info("Found orderQrData for the orderId: {}", orderQrData);
         return orderQrData;

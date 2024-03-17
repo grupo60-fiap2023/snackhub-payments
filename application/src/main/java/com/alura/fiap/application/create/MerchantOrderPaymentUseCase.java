@@ -23,6 +23,8 @@ public class MerchantOrderPaymentUseCase {
 
     private static final Logger logger = LoggerFactory.getLogger(MerchantOrderPaymentUseCase.class);
     public static final String MERCHANT_ORDER = "merchant_order";
+    public static final String PAYMENT_ACCEPT = "PAYMENT_ACCEPT";
+    public static final String PAYMENT_REJECTED = "PAYMENT_REJECTED";
     private final String accessTokenSeller;
     private final MerchantOrderPaymentGateway merchantOrderPaymentGateway;
     private final SQSEventPublisherGateway sqsEventPublisherGateway;
@@ -56,27 +58,27 @@ public class MerchantOrderPaymentUseCase {
                     //Consultando o pagamento no banco de dados
                     List<com.alura.fiap.domain.payments.MerchantOrder> merchantOrderPaymentByExternalReference =
                             this.merchantOrderPaymentGateway.findMerchantOrderPaymentByExternalReference(merchantOrderResourceMP.getExternalReference());
-                    //Verificando se o pagamento foi aprovado e enviando o evento de status para o SQS
-                    if(!merchantOrderPaymentByExternalReference.isEmpty() && merchantOrderPaymentByExternalReference.stream()
+                    //Verificando se o pagamento foi aprovado
+                    if (!merchantOrderPaymentByExternalReference.isEmpty() && merchantOrderPaymentByExternalReference.stream()
                             .anyMatch(merchantOrder -> merchantOrder.payment().get(0).status().equals("approved"))) {
-                        OrderStatusProducer orderStatusProducer = OrderStatusProducer.with(
+                        //Caso o pagamento tenha sido aprovado, envia o evento de status para o SQS para os topics order-status e payment-status
+                        OrderStatusProducer orderStatusSucessProducer = OrderStatusProducer.with(
                                 merchantOrderPaymentByExternalReference.get(0).externalReference(),
-                                merchantOrderPaymentByExternalReference.get(0).payment().get(0).status());
-                        sqsEventPublisherGateway.publishOrderStatus(orderStatusProducer);
-
+                                PAYMENT_ACCEPT);
+                        sqsEventPublisherGateway.publishOrderStatus(orderStatusSucessProducer);
                         PaymentStatusProducer paymentStatusProducer =
                                 PaymentStatusProducer.with(merchantOrderPaymentByExternalReference.get(0).externalReference(),
                                         merchantOrderPaymentByExternalReference.get(0).title(),
-                                        merchantOrderPaymentByExternalReference.get(0).payment().get(0).status(),
+                                        PAYMENT_ACCEPT,
                                         merchantOrderPaymentByExternalReference.get(0).description());
                         sqsEventPublisherGateway.publishEventPaymentStatus(paymentStatusProducer);
 
-                    }else {
-                        //Caso o pagamento não tenha sido aprovado, envia o evento de status para o SQS apenas para o topic order-status
-                        OrderStatusProducer orderStatusProducer = OrderStatusProducer.with(
+                    } else {
+                        //Caso o pagamento tenha sido rejeitado, envia o evento de status para o SQS para o topic order-status
+                        OrderStatusProducer orderStatusRejectProducer = OrderStatusProducer.with(
                                 merchantOrderPaymentByExternalReference.get(0).externalReference(),
-                                merchantOrderPaymentByExternalReference.get(0).payment().get(0).status());
-                        sqsEventPublisherGateway.publishOrderStatus(orderStatusProducer);
+                                PAYMENT_REJECTED);
+                        sqsEventPublisherGateway.publishOrderStatus(orderStatusRejectProducer);
                     }
                 } else {
                     logger.info("No payments found for merchant order with ID: {}", merchantOrderResourceMP.getId());
