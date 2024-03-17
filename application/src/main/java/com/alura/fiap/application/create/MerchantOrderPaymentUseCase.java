@@ -54,7 +54,6 @@ public class MerchantOrderPaymentUseCase {
                     this.merchantOrderPaymentGateway.saveMerchantOrderPayment(getMerchantOrder(merchantOrderResourceMP, payments));
                     logger.info("Save in Data Base : Order ID {}", merchantOrderResourceMP.getExternalReference());
 
-
                     //Consultando o pagamento no banco de dados
                     List<com.alura.fiap.domain.payments.MerchantOrder> merchantOrderPaymentByExternalReference =
                             this.merchantOrderPaymentGateway.findMerchantOrderPaymentByExternalReference(merchantOrderResourceMP.getExternalReference());
@@ -66,23 +65,38 @@ public class MerchantOrderPaymentUseCase {
                                 merchantOrderPaymentByExternalReference.get(0).externalReference(),
                                 PAYMENT_ACCEPT);
                         sqsEventPublisherGateway.publishOrderStatus(orderStatusSucessProducer);
+                        //Envia o evento de status para o SQS para o topic payment-status
                         PaymentStatusProducer paymentStatusProducer =
                                 PaymentStatusProducer.with(merchantOrderPaymentByExternalReference.get(0).externalReference(),
-                                        merchantOrderPaymentByExternalReference.get(0).title(),
+                                        merchantOrderPaymentByExternalReference.get(0).description(),
                                         PAYMENT_ACCEPT,
-                                        merchantOrderPaymentByExternalReference.get(0).description());
+                                        merchantOrderPaymentByExternalReference.get(0).title());
                         sqsEventPublisherGateway.publishEventPaymentStatus(paymentStatusProducer);
 
-                    } else {
+                    } else if(!merchantOrderPaymentByExternalReference.isEmpty() && merchantOrderPaymentByExternalReference.stream()
+                            .anyMatch(merchantOrder -> merchantOrder.payment().get(0).status().equals("rejected"))){
                         //Caso o pagamento tenha sido rejeitado, envia o evento de status para o SQS para o topic order-status
                         OrderStatusProducer orderStatusRejectProducer = OrderStatusProducer.with(
                                 merchantOrderPaymentByExternalReference.get(0).externalReference(),
                                 PAYMENT_REJECTED);
                         sqsEventPublisherGateway.publishOrderStatus(orderStatusRejectProducer);
+                        //Envia o evento de status para o SQS para o topic payment-status
+                        PaymentStatusProducer paymentStatusProducer =
+                                PaymentStatusProducer.with(merchantOrderPaymentByExternalReference.get(0).externalReference(),
+                                        merchantOrderPaymentByExternalReference.get(0).description(),
+                                        PAYMENT_REJECTED,
+                                        merchantOrderPaymentByExternalReference.get(0).title());
+                        sqsEventPublisherGateway.publishEventPaymentStatus(paymentStatusProducer);
                     }
                 } else {
-                    logger.info("No payments found for merchant order with ID: {}", merchantOrderResourceMP.getId());
+                    //Caso não tenha pagamentos, envia o evento de status para o SQS para o topic order-status
+                    OrderStatusProducer orderStatusSucessProducer = OrderStatusProducer.with(
+                            merchantOrderResourceMP.getExternalReference(),
+                            merchantOrderResourceMP.getPayments().get(0).getStatus());
+                    sqsEventPublisherGateway.publishOrderStatus(orderStatusSucessProducer);
                 }
+            }else {
+                logger.info("No payments found for merchant order with ID: {}", id);
             }
             return ResponseEntity.ok().build();
 

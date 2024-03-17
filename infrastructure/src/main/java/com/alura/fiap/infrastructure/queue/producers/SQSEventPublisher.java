@@ -1,4 +1,4 @@
-package com.alura.fiap.infrastructure.producers;
+package com.alura.fiap.infrastructure.queue.producers;
 
 import com.alura.fiap.domain.payments.OrderStatusProducer;
 import com.alura.fiap.domain.payments.PaymentStatusProducer;

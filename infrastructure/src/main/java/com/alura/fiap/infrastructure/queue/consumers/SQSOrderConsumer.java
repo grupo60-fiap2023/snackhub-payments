@@ -1,4 +1,4 @@
-package com.alura.fiap.infrastructure.consumers;
+package com.alura.fiap.infrastructure.queue.consumers;
 
 import com.alura.fiap.infrastructure.api.OrderQrCodeAPI;
 import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
@@ -50,23 +50,23 @@ public class SQSOrderConsumer {
             CreateOrderQrCodeRequest createOrderQrCodeRequest = new CreateOrderQrCodeRequest(
                     orderConsumer.getOrderId().toString(),
                     "Order ID: " + orderConsumer.getOrderId().toString() +
-                            " Customer Id: " + orderConsumer.getOrderIdentifier() +
+                            " Customer Id: " + orderConsumer.getCustomerId() +
                             " Order Identifier: " + orderConsumer.getOrderIdentifier(),
                     Collections.singletonList(
                             new OrderQrCodeItemsRequest(
-                                    orderConsumer.getCustomerId().toString(),
+                                    orderConsumer.getOrderIdentifier(),
                                     UNIT,
                                     orderConsumer.getValue(),
                                     QUANTITY,
                                     orderConsumer.getValue(),
-                                    orderConsumer.getOrderIdentifier()
+                                    orderConsumer.getCustomerId().toString()
                             )
                     ),
                     orderConsumer.getValue(),
                     new OrderQrCodeCashOutRequest(AMOUNT),
                     NOTIFICATION_URL,
                     "Order ID: " + orderConsumer.getOrderId().toString() +
-                            " Customer Id: " + orderConsumer.getOrderIdentifier() +
+                            " Customer Id: " + orderConsumer.getCustomerId() +
                             " Order Identifier: " + orderConsumer.getOrderIdentifier());
             orderQrCodeAPI.createOrderQrCode(authorization, createOrderQrCodeRequest, userId, externalId);
         } catch (NumberFormatException | NullPointerException e) {
