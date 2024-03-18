@@ -20,9 +20,10 @@ import java.util.Objects;
 public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
 
     public static final String PENDING_PAYMENT = "PENDING_PAYMENT";
+    public static final String PAYMENT_ACCEPT = "PAYMENT_ACCEPT";
+    public static final String PAYMENT_REJECTED = "PAYMENT_REJECTED";
     private static final Logger logger = LoggerFactory.getLogger(OrderQrCodeFeignGateway.class);
     private final MPIntegrationGateway mpIntegrationGateway;
-
     private final SQSEventPublisher sqsEventPublisher;
 
     private final MerchantOrderPaymentGateway merchantOrderPaymentGateway;
@@ -50,8 +51,30 @@ public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
 
         OrderQrData orderQrData = OrderQrData.with(request.externalReference(), request.items().get(0).title(), request.items().get(0).description(),
                 Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), orderQRCode.getBody().qrData());
+
         merchantOrderPaymentGateway.saveOrderConsumer(orderQrData);
         logger.info("Save in Data Base: {} ", orderQrData);
+        OrderStatusProducer orderStatusPendingProducer = OrderStatusProducer.with(
+                request.externalReference(),
+                PENDING_PAYMENT);
+        sqsEventPublisher.publishEventOrderStatus(orderStatusPendingProducer);
+
+        mockPaymentMP(request);
+
         return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
+    }
+
+    private void mockPaymentMP(OrderQrCode request) {
+        OrderStatusProducer orderStatusSucessProducer = OrderStatusProducer.with(
+                request.externalReference(),
+                PAYMENT_ACCEPT);
+        sqsEventPublisher.publishEventOrderStatus(orderStatusSucessProducer);
+
+        PaymentStatusProducer paymentStatusProducer =
+                PaymentStatusProducer.with(request.externalReference(),
+                        request.items().get(0).title(),
+                        PAYMENT_ACCEPT,
+                        request.items().get(0).description());
+        sqsEventPublisher.publishEventPaymentStatus(paymentStatusProducer);
     }
 }
