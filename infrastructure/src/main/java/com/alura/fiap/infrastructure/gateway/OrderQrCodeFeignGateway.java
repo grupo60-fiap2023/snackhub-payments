@@ -7,7 +7,7 @@ import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
-import com.alura.fiap.infrastructure.producers.SQSEventPublisher;
+import com.alura.fiap.infrastructure.queue.producers.SQSEventPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -52,10 +52,6 @@ public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
                 Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), orderQRCode.getBody().qrData());
         merchantOrderPaymentGateway.saveOrderConsumer(orderQrData);
         logger.info("Save in Data Base: {} ", orderQrData);
-
-        OrderStatusProducer orderStatusProducer = OrderStatusProducer.with(request.externalReference(), PENDING_PAYMENT);
-        sqsEventPublisher.publishEventOrderStatus(orderStatusProducer);
-
         return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
     }
 }
