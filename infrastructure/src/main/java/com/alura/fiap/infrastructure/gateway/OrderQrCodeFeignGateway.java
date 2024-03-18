@@ -52,10 +52,6 @@ public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
                 Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), orderQRCode.getBody().qrData());
         merchantOrderPaymentGateway.saveOrderConsumer(orderQrData);
         logger.info("Save in Data Base: {} ", orderQrData);
-
-        OrderStatusProducer orderStatusProducer = OrderStatusProducer.with(request.externalReference(), PENDING_PAYMENT);
-        sqsEventPublisher.publishEventOrderStatus(orderStatusProducer);
-
         return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
     }
 }

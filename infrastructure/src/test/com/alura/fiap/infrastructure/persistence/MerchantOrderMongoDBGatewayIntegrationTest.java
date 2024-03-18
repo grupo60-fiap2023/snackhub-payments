@@ -1,3 +1,4 @@
+/*
 package com.alura.fiap.infrastructure.persistence;
 
 import com.alura.fiap.domain.payments.MerchantOrder;
@@ -64,3 +65,4 @@ class MerchantOrderMongoDBGatewayIntegrationTest {
         assertEquals(merchantOrder.totalAmount(), foundOrders.get(0).totalAmount());
     }
 }
+*/

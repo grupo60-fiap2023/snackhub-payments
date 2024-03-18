@@ -23,6 +23,7 @@ public class MerchantOrderPaymentUseCase {
 
     private static final Logger logger = LoggerFactory.getLogger(MerchantOrderPaymentUseCase.class);
     public static final String MERCHANT_ORDER = "merchant_order";
+    public static final String PENDING_PAYMENT = "PENDING_PAYMENT";
     public static final String PAYMENT_ACCEPT = "PAYMENT_ACCEPT";
     public static final String PAYMENT_REJECTED = "PAYMENT_REJECTED";
     private final String accessTokenSeller;
@@ -73,7 +74,8 @@ public class MerchantOrderPaymentUseCase {
                                         merchantOrderPaymentByExternalReference.get(0).title());
                         sqsEventPublisherGateway.publishEventPaymentStatus(paymentStatusProducer);
 
-                    } else if(!merchantOrderPaymentByExternalReference.isEmpty() && merchantOrderPaymentByExternalReference.stream()
+                    }
+                    else if(!merchantOrderPaymentByExternalReference.isEmpty() && merchantOrderPaymentByExternalReference.stream()
                             .anyMatch(merchantOrder -> merchantOrder.payment().get(0).status().equals("rejected"))){
                         //Caso o pagamento tenha sido rejeitado, envia o evento de status para o SQS para o topic order-status
                         OrderStatusProducer orderStatusRejectProducer = OrderStatusProducer.with(
@@ -88,14 +90,15 @@ public class MerchantOrderPaymentUseCase {
                                         merchantOrderPaymentByExternalReference.get(0).title());
                         sqsEventPublisherGateway.publishEventPaymentStatus(paymentStatusProducer);
                     }
-                } else {
+                }
+                else {
                     //Caso não tenha pagamentos, envia o evento de status para o SQS para o topic order-status
                     OrderStatusProducer orderStatusSucessProducer = OrderStatusProducer.with(
                             merchantOrderResourceMP.getExternalReference(),
-                            merchantOrderResourceMP.getPayments().get(0).getStatus());
+                            PENDING_PAYMENT);
                     sqsEventPublisherGateway.publishOrderStatus(orderStatusSucessProducer);
                 }
-            }else {
+            } else {
                 logger.info("No payments found for merchant order with ID: {}", id);
             }
             return ResponseEntity.ok().build();
