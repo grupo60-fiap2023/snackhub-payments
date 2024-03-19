@@ -7,74 +7,92 @@ import com.alura.fiap.infrastructure.models.CreateOrderQrCodeRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeCashOutRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeItemsRequest;
 import com.alura.fiap.infrastructure.models.OrderQrCodeResponse;
-import com.alura.fiap.infrastructure.queue.producers.SQSEventPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class OrderQrCodeFeignGateway implements OrderQrCodeGateway {
-
-    public static final String PENDING_PAYMENT = "PENDING_PAYMENT";
-    public static final String PAYMENT_ACCEPT = "PAYMENT_ACCEPT";
-    public static final String PAYMENT_REJECTED = "PAYMENT_REJECTED";
     private static final Logger logger = LoggerFactory.getLogger(OrderQrCodeFeignGateway.class);
     private final MPIntegrationGateway mpIntegrationGateway;
-    private final SQSEventPublisher sqsEventPublisher;
 
     private final MerchantOrderPaymentGateway merchantOrderPaymentGateway;
 
-    public OrderQrCodeFeignGateway(final MPIntegrationGateway mpIntegrationGateway, SQSEventPublisher sqsEventPublisher, MerchantOrderPaymentGateway merchantOrderPaymentGateway) {
+    public OrderQrCodeFeignGateway(final MPIntegrationGateway mpIntegrationGateway, MerchantOrderPaymentGateway merchantOrderPaymentGateway) {
         this.mpIntegrationGateway = mpIntegrationGateway;
-        this.sqsEventPublisher = sqsEventPublisher;
         this.merchantOrderPaymentGateway = merchantOrderPaymentGateway;
     }
 
     @Override
     public OrderQrCodeOut createOrderQRCode(String authorization, OrderQrCode request, String userId, String externalPosId) {
+        // Validate input parameters
+        if (authorization == null || request == null || userId == null || externalPosId == null) {
+            throw new IllegalArgumentException("Null parameter(s) detected");
+        }
 
-        List<OrderQrCodeItemsRequest> orderQrCodeItemsRequests = request.items().stream()
-                .map(item -> new OrderQrCodeItemsRequest(item.title(), item.unitMeasure(), item.unitPrice(), item.quantity(),
-                        item.totalAmount(), item.description()
-                )).toList();
+        try {
+            // Map order items to OrderQrCodeItemsRequest
+            List<OrderQrCodeItemsRequest> orderQrCodeItemsRequests = request.items().stream()
+                    .map(item -> new OrderQrCodeItemsRequest(
+                            item.title(),
+                            item.unitMeasure(),
+                            item.unitPrice(),
+                            item.quantity(),
+                            item.totalAmount(),
+                            item.description()
+                    ))
+                    .toList();
 
-        var cashOut = new OrderQrCodeCashOutRequest(request.cashOut().amount());
-        var createOrderQrCodeRequest = new CreateOrderQrCodeRequest(request.externalReference(), request.title(),
-                orderQrCodeItemsRequests, request.totalAmount(), cashOut, request.notificationUrl(), request.description());
+            // Create order QR code request
+            OrderQrCodeCashOutRequest cashOut = new OrderQrCodeCashOutRequest(request.cashOut().amount());
+            CreateOrderQrCodeRequest createOrderQrCodeRequest = new CreateOrderQrCodeRequest(
+                    request.externalReference(),
+                    request.title(),
+                    orderQrCodeItemsRequests,
+                    request.totalAmount(),
+                    cashOut,
+                    request.notificationUrl(),
+                    request.description()
+            );
 
-        final ResponseEntity<OrderQrCodeResponse> orderQRCode = mpIntegrationGateway.createOrderQRCode(authorization, createOrderQrCodeRequest, userId, externalPosId);
-        logger.info("Post MP mpIntegrationGateway.createOrderQRCode: {} ", orderQRCode.getBody());
+            // Call integration gateway to create order QR code
+            ResponseEntity<OrderQrCodeResponse> orderQRCodeResponse = mpIntegrationGateway.createOrderQRCode(authorization, createOrderQrCodeRequest, userId, externalPosId);
 
-        OrderQrData orderQrData = OrderQrData.with(request.externalReference(), request.items().get(0).title(), request.items().get(0).description(),
-                Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), orderQRCode.getBody().qrData());
+            // Log response from integration gateway
+            if (orderQRCodeResponse != null && orderQRCodeResponse.getBody() != null) {
+                logger.info("Order QR code creation response: {}", orderQRCodeResponse.getBody());
+            } else {
+                logger.warn("Order QR code creation response is null");
+            }
 
-        merchantOrderPaymentGateway.saveOrderConsumer(orderQrData);
-        logger.info("Save in Data Base: {} ", orderQrData);
-        OrderStatusProducer orderStatusPendingProducer = OrderStatusProducer.with(
-                request.externalReference(),
-                PENDING_PAYMENT);
-        sqsEventPublisher.publishEventOrderStatus(orderStatusPendingProducer);
-
-        mockPaymentMP(request);
-
-        return new OrderQrCodeOut(Objects.requireNonNull(orderQRCode.getBody()).inStoreOrderId(), Objects.requireNonNull(orderQRCode.getBody().qrData()));
-    }
-
-    private void mockPaymentMP(OrderQrCode request) {
-        OrderStatusProducer orderStatusSucessProducer = OrderStatusProducer.with(
-                request.externalReference(),
-                PAYMENT_ACCEPT);
-        sqsEventPublisher.publishEventOrderStatus(orderStatusSucessProducer);
-
-        PaymentStatusProducer paymentStatusProducer =
-                PaymentStatusProducer.with(request.externalReference(),
+            // Process response and save order data
+            if (orderQRCodeResponse != null && orderQRCodeResponse.getBody() != null) {
+                OrderQrCodeResponse responseBody = orderQRCodeResponse.getBody();
+                OrderQrData orderQrData = OrderQrData.with(
+                        request.externalReference(),
                         request.items().get(0).title(),
-                        PAYMENT_ACCEPT,
-                        request.items().get(0).description());
-        sqsEventPublisher.publishEventPaymentStatus(paymentStatusProducer);
+                        request.items().get(0).description(),
+                        responseBody.inStoreOrderId(),
+                        responseBody.qrData()
+                );
+
+                // Save order data
+                merchantOrderPaymentGateway.saveOrderConsumer(orderQrData);
+                logger.info("Order data saved: {}", orderQrData);
+
+                // Return OrderQrCodeOut object
+                return new OrderQrCodeOut(responseBody.inStoreOrderId(), responseBody.qrData());
+            } else {
+                throw new IllegalStateException("Failed to create order QR code");
+            }
+        } catch (Exception e) {
+            // Handle other exceptions
+            logger.error("Failed to create order QR code: {}", e.getMessage());
+            throw new IllegalStateException("Failed to create order QR code");
+        }
+
+        }
     }
-}

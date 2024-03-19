@@ -30,6 +30,6 @@ public interface OrderQrCodeAPI {
     void createOrderQrCode(
             @RequestHeader(required = false) @Schema(hidden = true) String authorization,
             @RequestBody @Valid CreateOrderQrCodeRequest input,
-            @PathVariable @Schema(description = "Id do usuário da aplicação", example = "187206752") String userId,
-            @PathVariable @Schema(description = "Id da Loja(POS) vincalado a aplicação", example = "SNACKBARPOS01") String externalPosId);
+            @PathVariable @Schema(description = "Id do usuário da aplicação") String userId,
+            @PathVariable @Schema(description = "Id da Loja(POS) vincalado a aplicação") String externalPosId);
 }

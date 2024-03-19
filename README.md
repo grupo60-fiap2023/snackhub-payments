@@ -49,90 +49,16 @@ Essa camada é responsável por lidar com os detalhes técnicos, como o acesso a
 # Persistência
 No microserviço estamos utilizando um banco de dados NOSQL MongoDB.
 
-# Cobertura e Qualidade
 
-Nossa pipeline no Github Actions é realizada todas as etapas de build, 
-análise e deploy da aplicação.
+# Tech Challenge 5
 
-Na Step Build and analyze:
-
-![img.png](readmefiles/deploy-sucess.png)
-
-- Build do microserviço
-- Execução de todos os tipos de testes
-- Geração de relatórios de testes e cobertura
-- Envio das informações do projeto ao SonarCloud
-
-https://sonarcloud.io/summary/overall?id=grupo60-fiap2023_snackhub-payments
-
-![img.png](readmefiles/sonarx??cloud.png)
-
-No SonarCloud é avaliado:
-- Prováveis Bugs
-- Qualidade do fonte
-- Linhas duplicadas
-- Conbertura do fonte por testes
-
-
-## Testes Implementados
-
-Todos módulos implementados no serviço possuem testes de unidade implementados com o JUnit e boas práticas de BDD.
-
-#### application:
-![img.png](readmefiles/coverage-application.png)
-
-#### domain:
-![img.png](readmefiles/coverage-domain.png)
-
-#### infrastructure:
-![img.png](readmefiles/coverage-infra.png)
-
-
-## BDD
-Utilizado o Cucumber nos BDD.
-
-![img.png](readmefiles/bdd-cucumber.png)
-
-## Integração
-
-![img.png](readmefiles/integration-test-mongodb.png)
-
-## Como executar só com Docker?
-
-**1. Subir a aplicação e o banco de dados MongoDB com Docker:**
-```shell
-docker-compose up -d
-```
-
-**2. URL de acesso:**
-
-http://localhost:8080/swagger-ui/index.html#
-
-# Step Deploy
-O último step da pipeline realiza de forma automatizada o deploy para a AWS.
-
-![img.png](readmefiles/deploy-sucess.png)
-
-Serviço no ar:
-
-![img.png](readmefiles/app-ar.png)
-
-# Proteção Repositório
-![img.png](readmefiles/branchprotect1.png)
-
-![img_1.png](readmefiles/branchprotect2.png)
-
-# Merge Bloqueado main protegida
-![img_1.png](readmefiles/merge-block.png)
-
-
-
-# Fase 5
+### Desenho da Arquitetura
+#### Escolhendo a abordagem coreografada no padrão SAGA de microserviços
 ![img_1.png](readmefiles/Tech5.jpg)
 
-Escolhendo a abordagem coreografada no padrão SAGA de microserviços
 
-O que é o padrão SAGA?
+
+### O que é o padrão SAGA?
 O padrão SAGA é uma técnica para manter a consistência dos dados em sistemas distribuídos, especialmente em arquiteturas de microserviços. O padrão foi criado com o desafio das transações distribuídas, onde uma operação pode envolver vários serviços que precisam ser coordenados de forma consistente.
 
 Existem duas abordagens principais dentro do padrão SAGA:  coreografia e orquestração
@@ -141,7 +67,7 @@ Coreografia: Os serviços colaboram entre si, sem a necessidade de um controlado
 
 Orquestração: Envolve um serviço centralizado (geralmente chamado de orquestrador) que coordena e controla as transações entre os serviços participantes.
 
-Vantagem da abordagem coreografada no padrão SAGA?
+### Vantagem da abordagem coreografada no padrão SAGA?
 
 - Desacoplamento: A abordagem coreografada promove um maior desacoplamento entre os serviços. Cada serviço conhece apenas as interações com os outros serviços com os quais precisa se comunicar diretamente. Isso facilita a manutenção, escalabilidade e evolução do sistema, já que as mudanças em um serviço têm menos impacto nos outros.
 
@@ -153,11 +79,11 @@ Vantagem da abordagem coreografada no padrão SAGA?
 
 - Menos ponto único de falha: Em uma abordagem orquestrada, o orquestrador central pode se tornar um ponto único de falha e um gargalo de desempenho. Na coreografia, não há esse risco, pois não há um ponto centralizado de controle.
 
-Conclusão
+### Conclusão
 
 Embora a escolha entre orquestração e coreografia no padrão SAGA dependa das necessidades específicas do sistema, a abordagem coreografada oferece vantagens significativas em termos de desacoplamento, escalabilidade, resiliência, flexibilidade e robustez contra falhas. Ao optar por uma abordagem coreografada, deixamos nossos serviços mais resilientes, flexíveis e escaláveis.
 
-## Fluxo de Funcionamento da Aplicação
+### Desenho da Arquitetura da App SnackHub Pay
 
 ![img_1.png](readmefiles/Tech5-Snackhubpay.jpg)
 
@@ -184,10 +110,108 @@ Embora a escolha entre orquestração e coreografia no padrão SAGA dependa das 
 10. **Publicação de Mensagem nas Filas order-status-topic e payment-status-topic:**
     - Após receber a notificação de pagamento, o serviço publica mensagens nas filas order-status-topic e payment-status-topic.
 
-## Interação do App SnackHub Pay com as Filas:
+### Interação da App SnackHub Pay com as Queues:
 
 - **Consumidor da Fila order-topic:** O aplicativo SnackHub Pay consome mensagens da fila order-topic da aplicação order.
 - **Produtor da Fila order-status-topic:** O aplicativo SnackHub Pay produz mensagens na fila order-status-topic para a aplicação order.
 - **Produtor da Fila payment-status-topic:** O aplicativo SnackHub Pay produz mensagens na fila payment-status-topic para a aplicação customer.
 
 Essa nova fase do projeto adiciona uma interação mais abrangente com as filas, permitindo uma comunicação eficiente entre os diferentes componentes do sistema e uma gestão mais completa dos pedidos e pagamentos.
+#### Obs.: O endpoint de criação de pagamento via API foi mantido mesmo após a implementação do padrão SAGA e SQS para fins de teste e validação do fluxo de pagamento.
+
+
+# OWASP ZAP
+
+## Conceito
+
+OWASP ZAP (Zed Attack Proxy) é uma ferramenta de segurança de código aberto desenvolvida para ajudar desenvolvedores, testadores de segurança e administradores de sistemas a identificar e corrigir vulnerabilidades em aplicativos da web. Ele fornece recursos poderosos para análise de segurança automatizada, testes de penetração e relatórios detalhados de vulnerabilidades.
+
+## Definição
+
+OWASP ZAP é uma ferramenta de segurança de aplicativos da web que oferece funcionalidades como proxy de interceptação, varredura automatizada de segurança, testes de penetração e análise de vulnerabilidades. Ele é mantido pela Open Web Application Security Project (OWASP) e é usado por profissionais de segurança em todo o mundo para melhorar a segurança de aplicativos da web.
+
+## Exemplo de Uso
+
+Para usar o OWASP ZAP em um projeto de desenvolvimento de software:
+
+1. Inicie o OWASP ZAP e configure-o como um proxy no seu navegador.
+2. Navegue pelas páginas web do aplicativo que você deseja testar.
+3. Use as ferramentas de varredura e teste de penetração do OWASP ZAP para identificar vulnerabilidades de segurança, como Cross-Site Scripting (XSS), Injeção de SQL, entre outros.
+4. Analise os relatórios gerados pelo OWASP ZAP e tome medidas para corrigir as vulnerabilidades encontradas.
+
+## Referência
+
+Para mais informações sobre o OWASP ZAP, consulte a [documentação oficial](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project).
+
+
+
+## Report OWASP ZAP da App SnackHub Pay
+* Relatórios de geração e confirmação de pagamento antes e depois da correção de vunerabilidades altas.
+
+### Relatórios de vunerabilidades Zap scanning Report
+
+* [Clique aqui para acessar o relatório da geração do pagamento](readmefiles/report-zap/report-zap-checkout-pg-antes.pdf)
+* [Clique aqui para acessar o relatório da Confirmação de pagamento(Webhook)](readmefiles/report-zap/report-webhook-pg-via-ultrahook-antes.pdf)
+
+### Relatórios após correção de vunerabilidades altas Zap scanning Report
+
+* [Clique aqui para acessar o relatório da geração do pagamento](readmefiles/report-zap/repot-zap-checkout-pg-depois.pdf)
+* [Clique aqui para acessar o relatório da Confirmação de pagamento(Webhook)](readmefiles/report-zap/report-webhook-pg-via-ultrahook-depois.pdf)
+
+
+## Executando a App
+
+**1. Push da image app:**
+```shell
+docker push grupo60fiap2023/snackhub-payments
+```
+**2. Subir a aplicação e o banco de dados MongoDB com Docker:**
+```shell
+docker-compose up -d
+```
+
+![img.png](readmefiles/app-start-docker.png)
+
+**2. URL de acesso:**
+
+http://localhost:8080/swagger-ui/index.html
+
+**Authorize:**
+```shell
+APP_USR-3823682881313300-031907-0ade7b50918de2f2c67c6970abe3ced9-1589696702
+```
+
+![img.png](readmefiles/swagger-new.png)
+
+**3. Ultrahook para simular Webhook:**
+```shell
+ultrahook -k nHfMDsNNaRJvWEQAuqFNXYxrQuW8R8Sc mercadopago 8080/notification
+```
+
+![img.png](readmefiles/ultrahook.png)
+
+Referência: https://www.ultrahook.com/
+
+
+**4. Usuario comprador teste MP:**
+
+**User:**
+```shell
+TESTUSER196316317
+```
+**Password:**
+```shell
+z9nB7nGQS6
+```
+
+**5. Captura do fluxo de pagamento:**
+
+*Fluxo de PG:*
+[![mp4/fluxo-de-pg.mp4](readmefiles/video.png)](https://youtu.be/MBjZx_qpbi4)
+* No minuto 1:02 é gerado o QRCode, o momento do pagamento está na captura abaixo.
+
+*PG da order via App MP:*
+[![mp4/pg-da-ordem.mp4](readmefiles/video.png)](https://youtu.be/B9TpFiiMMSI)
+
+**6. Webhook Notification:**
+![img.png](readmefiles/notification-mp.png)

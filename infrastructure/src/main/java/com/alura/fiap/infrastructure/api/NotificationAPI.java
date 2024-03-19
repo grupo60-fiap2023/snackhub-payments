@@ -23,7 +23,7 @@ public interface NotificationAPI {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    @Operation(summary = "Receive notifications merchant order and payment", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Receive notifications merchant order and payment")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Created successfully"),
             @ApiResponse(responseCode = "400", description = "Bad Request"),
