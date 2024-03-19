@@ -28,7 +28,7 @@ public interface MerchantOrderAPI {
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
     ResponseEntity<List<MerchantOrder>> receiveMerchantOrder(
-            @PathVariable @Schema(description = "Referência do pedido - externalReference do MP - OrderId do APP", example = "33333") String externalReference);
+            @PathVariable @Schema(description = "Referência do pedido - externalReference do MP - OrderId do APP") String externalReference);
 
 
 
@@ -42,5 +42,5 @@ public interface MerchantOrderAPI {
             @ApiResponse(responseCode = "500", description = "An internal server error was thrown"),
     })
     ResponseEntity<List<OrderQrData>> receiveQrDataPayment(
-            @PathVariable @Schema(description = "Order Id", example = "33") String orderId);
+            @PathVariable @Schema(description = "Order Id") String orderId);
 }

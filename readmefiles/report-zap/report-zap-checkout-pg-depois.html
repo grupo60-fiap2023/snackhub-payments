@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alert-type-0 -->
+<html lang="pt" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório de digitalização ZAP</title>
+<link href="./Relatório de digitalização ZAP - Checkout PG - Snackhubpay (depois)_files/normalize.css" rel="stylesheet">
+<link href="./Relatório de digitalização ZAP - Checkout PG - Snackhubpay (depois)_files/main.css" rel="stylesheet">
+<link href="./Relatório de digitalização ZAP - Checkout PG - Snackhubpay (depois)_files/colors.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./Relatório de digitalização ZAP - Checkout PG - Snackhubpay (depois)_files/m=el_main_css"></head>
+<body>
+	<header>
+		<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Relatório de digitalização ZAP</font></font></h1>
+		<p>
+			<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Gerado com </font></font></span> <a href="https://zaproxy.org/"><img src="./Relatório de digitalização ZAP - Checkout PG - Snackhubpay (depois)_files/zap32x32.png" alt="O logotipo ZAP" class="zap-logo"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ZAP </font></font></a>
+			<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">no ter. </font><font style="vertical-align: inherit;">19 mar. </font><font style="vertical-align: inherit;">2024, às 12:33:53</font></font></span>
+		</p>
+		<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Versão ZAP: 2.14.0</font></font></p>
+		<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+			ZAP é apoiado pela </font></font><a href="https://crashoverride.com/open-source"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Crash Override Open Source Fellowship</font></font></a>
+		</p>
+	</header>
+
+	<main>
+
+		<section id="contents" class="contents">
+			<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Conteúdo</font></font></h2>
+			<nav>
+				<ol>
+					<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#about-this-report"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sobre este relatório</font></font></a>
+						<ol>
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#report-description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descrição do relatório</font></font></a></li>
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#report-parameters"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parâmetros de relatório</font></font></a></li>
+						</ol></li>
+					<data-th-block>
+					<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#summaries"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Resumos</font></font></a>
+						<ol>
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#risk-confidence-counts"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contagens de alertas por risco e confiança</font></font></a></li>
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#site-risk-counts"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contagens de alertas por site e risco</font></font></a></li>
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alert-type-counts"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contagens de alertas por tipo de alerta</font></font></a></li>
+						</ol></li>
+					<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alerts"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alertas</font></font></a>
+						<ol>
+							
+							 
+							 
+							
+							
+							
+							
+							
+							
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alerts--risk-1-confidence-2"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Risco</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Baixo</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Confiança</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span></a></li>
+							
+							
+							
+							
+							  
+							
+							
+							
+							
+							
+							
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alerts--risk-0-confidence-2"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Risco</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Informativo</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Confiança</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span></a></li>
+							
+							
+							
+							
+							  
+						</ol></li>
+					<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#appendix"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apêndice</font></font></a>
+						<ol>
+							<li><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alert-types"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipos de alerta</font></font></a></li>
+						</ol></li>
+					</data-th-block>
+				</ol>
+			</nav>
+		</section>
+
+		<section id="about-this-report" class="about-this-report">
+			<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sobre este relatório</font></font></h2>
+
+			<section id="report-description">
+				<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descrição do relatório</font></font></h3>
+				<div class="report-description--container">
+					
+
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+	
+	  Snackhubpay checkout pg - createorder - depois 
+	  
+</font></font></p>
+ 
+				</div>
+			</section>
+
+			<section id="report-parameters">
+				<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parâmetros de relatório</font></font></h3>
+				<div class="report-parameters--container">
+					<h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contextos</font></font></h4>
+					
+					
+					<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nenhum contexto foi selecionado, portanto todos os contextos foram incluídos por padrão.</font></font></p>
+					  
+
+					<h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Locais</font></font></h4>
+					
+					<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Os seguintes sites foram incluídos:</font></font></p>
+					<ul class="sites-list">
+						<li><span class="site"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://localhost:8090</font></font></span></li>
+					</ul>
+					
+					<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(Se nenhum site for selecionado, todos os sites serão incluídos por padrão.)</font></font></p>
+					<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Um site incluído também deve estar dentro de um dos contextos incluídos para que seus dados sejam incluídos no relatório.</font></font></p>
+
+					<h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Níveis de risco</font></font></h4>
+					<p>
+						<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Incluído</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> :
+						 
+						 </font></font><span class="included-risk-codes"><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alto</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Baixo</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Informativo</font></font></span></span>
+					</p>
+					<p>
+						<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Excluído</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> :
+						  </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nenhum</font></font></span>
+						
+					</p>
+
+					<h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Níveis de confiança</font></font></h4>
+					<p>
+						<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Incluso</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> :
+						
+						
+						 </font></font><span class="included-confidence-codes"><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Usuário Confirmado</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alto</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Baixo</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Falso Positivo</font></font></span></span>
+					</p>
+					<p>
+						<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Excluído</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> :
+						
+						 </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nenhum</font></font></span>
+						
+					</p>
+				</div>
+			</section>
+		</section>
+
+		
+		<section>
+			
+		</section>
+		
+		<section id="summaries" class="summaries">
+			<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Resumos</font></font></h2>
+
+			<section id="risk-confidence-counts">
+				<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contagens de alertas por risco e confiança</font></font></h3>
+				<table class="risk-confidence-counts-table">
+					<caption>
+						<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta tabela mostra o número de alertas para cada nível de risco e confiança incluídos no relatório.</font></font></p>
+						<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(As porcentagens entre colchetes representam a contagem como porcentagem do número total de alertas incluídos no relatório, arredondado para uma casa decimal.)</font></font></p>
+					</caption>
+					<colgroup>
+						<col>
+						<col>
+					</colgroup>
+					<colgroup>
+						<col style="width: 11.666666666666666%"><col style="width: 11.666666666666666%"><col style="width: 11.666666666666666%"><col style="width: 11.666666666666666%"><col style="width: 11.666666666666666%">
+						<col style="width: 11.666666666666666%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td colspan="2" rowspan="2"></td>
+							<th scope="colgroup" colspan="6"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Confiança</font></font></th>
+						</tr>
+						<tr>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Usuário confirmado</font></font></th>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">alto</font></font></th>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio</font></font></th>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">baixo</font></font></th>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Falso Positivo</font></font></th>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Total</font></font></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="rowgroup" rowspan="5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Risco</font></font></th>
+							<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">alto</font></font></th>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio</font></font></th>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">baixo</font></font></th>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(50,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(50,0%)</font></font></span></td>
+						</tr>
+						<tr>
+							
+							<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Informativo</font></font></th>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(50,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(50,0%)</font></font></span></td>
+						</tr>
+						<tr>
+							<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Total</font></font></th>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(100,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0,0%)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(100%)</font></font></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section id="site-risk-counts">
+				<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contagens de alertas por site e risco</font></font></h3>
+				<table class="site-risk-counts-table">
+					<caption>
+						<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta tabela mostra, para cada local para o qual foram gerados um ou mais alertas, o número de alertas gerados em cada nível de risco.</font></font></p>
+						<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alertas com nível de confiança de "Falso Positivo" foram excluídos dessas contagens.</font></font></p>
+						<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(Os números entre parênteses são o número de alertas emitidos para o local nesse nível de risco ou acima dele.)</font></font></p>
+					</caption>
+					<colgroup>
+						<col>
+						<col>
+					</colgroup>
+					<colgroup>
+						<col style="width: 16.25%"><col style="width: 16.25%"><col style="width: 16.25%"><col style="width: 16.25%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td colspan="2" rowspan="2"></td>
+							<th scope="colgroup" colspan="4"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Risco</font></font></th>
+						</tr>
+						<tr>
+							<th scope="col">
+								<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alto </font></font></span><br>  <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(= alto)</font></font></span>  
+							</th>
+							<th scope="col">
+								<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio </font></font></span><br>   <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(&gt;= Médio)</font></font></span> 
+							</th>
+							<th scope="col">
+								<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Baixo </font></font></span><br>   <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(&gt;= Baixo)</font></font></span> 
+							</th>
+							<th scope="col">
+								<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Informativo </font></font></span><br>   <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(&gt;= Informativo)</font></font></span> 
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="rowgroup" rowspan="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Site</font></font></th>
+							<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://localhost:8090</font></font></th>
+							
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(0)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(2)</font></font></span></td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section id="alert-type-counts">
+				<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contagens de alertas por tipo de alerta</font></font></h3>
+				<table class="alert-type-counts-table">
+					<caption>
+						<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta tabela mostra o número de alertas de cada tipo de alerta, juntamente com o nível de risco do tipo de alerta.</font></font></p>
+						<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(As porcentagens entre colchetes representam cada contagem como uma porcentagem, arredondada para uma casa decimal, do número total de alertas incluídos neste relatório.)</font></font></p>
+					</caption>
+					<thead>
+						<tr>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de alerta</font></font></th>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Risco</font></font></th>
+							<th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contar</font></font></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row"><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alert-type-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Divulgação de erro de aplicativo</font></font></a></th>
+							<td class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">baixo</font></font></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(50,0%)</font></font></span></td>
+						</tr>
+						<tr>
+							<th scope="row"><a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alert-type-1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fuzzer do agente do usuário</font></font></a></th>
+							<td class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Informativo</font></font></td>
+							<td><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">12 </font></font></span><br> <span class="additional-info-percentages"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(600,0%)</font></font></span></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Total</font></font></th>
+							<td></td>
+							<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></td>
+						</tr>
+					</tfoot>
+				</table>
+			</section>
+		</section>
+
+		<section id="alerts" class="alerts">
+			<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alertas</font></font></h2>
+			<ol>
+				
+				 
+				 
+				 
+				
+				
+				
+				
+				<li id="alerts--risk-1-confidence-2">
+					<h3>
+						<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Risco</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Baixo</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Confiança</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://localhost:8090 </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alert-type-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Divulgação de erro de aplicativo </font></font></a> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
+									</h5>
+									<ol>
+										<li><details open="">
+												<summary>
+													<span class="request-method-n-url"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OBTER http://localhost:8090/mp/orders/createOrderQrCode/1589696702/SNACKBARPOTESTSELLER/qrs</font></font></span>
+												</summary>
+												
+<table class="alerts-table">
+	<tbody><tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Etiquetas de alerta</font></font></th>
+		<td>
+			<ul class="alert-tags-list">
+				<li>
+					<span><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WSTG-v42-ERRH-02</font></font></a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/01-Testing_For_Improper_Error_Handling"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WSTG-v42-ERRH-01</font></font></a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/Top10/A05_2021-Security_Misconfiguration/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OWASP_2021_A05</font></font></a></span> 
+				</li>
+				<li>
+					<span><a href="https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OWASP_2017_A06</font></font></a></span> 
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descrição do alerta</font></font></th>
+		<td> 
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta página contém uma mensagem de erro/aviso que pode revelar informações confidenciais, como a localização do arquivo que produziu a exceção não tratada. </font><font style="vertical-align: inherit;">Essas informações podem ser usadas para lançar novos ataques contra a aplicação web. </font><font style="vertical-align: inherit;">O alerta pode ser um falso positivo se a mensagem de erro for encontrada dentro de uma página de documentação.</font></font></p>
+ </td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Solicitar</font></font></th>
+		<td><details open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Linha de solicitação e seção de cabeçalho (727 bytes)</font></font></summary>
+				
+				<pre><code>GET http://localhost:8090/mp/orders/createOrderQrCode/1589696702/SNACKBARPOTESTSELLER/qrs HTTP/1.1<font></font>
+host: localhost:8090<font></font>
+Connection: keep-alive<font></font>
+Upgrade-Insecure-Requests: 1<font></font>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36<font></font>
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7<font></font>
+Sec-Fetch-Site: none<font></font>
+Sec-Fetch-Mode: navigate<font></font>
+Sec-Fetch-User: ?1<font></font>
+Sec-Fetch-Dest: document<font></font>
+sec-ch-ua: "Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"<font></font>
+sec-ch-ua-mobile: ?0<font></font>
+sec-ch-ua-platform: "Windows"<font></font>
+Accept-Language: pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7<font></font>
+<font></font>
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Corpo da solicitação (0 bytes)</font></font></summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Resposta</font></font></th>
+		<td><details open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Linha de status e seção de cabeçalho (473 bytes)</font></font></summary>
+				
+				<pre><code>HTTP/1.1 500 Internal Server Error<font></font>
+Expires: 0<font></font>
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate<font></font>
+X-XSS-Protection: 1; mode=block<font></font>
+Pragma: no-cache<font></font>
+X-Frame-Options: DENY<font></font>
+Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com; frame-ancestors 'self'; form-action 'self';<font></font>
+Date: Tue, 19 Mar 2024 15:33:24 GMT<font></font>
+Connection: keep-alive<font></font>
+X-Content-Type-Options: nosniff<font></font>
+Content-Type: text/html;charset=UTF-8<font></font>
+Content-Length: 52<font></font>
+<font></font>
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Corpo de resposta (52 bytes)</font></font></summary>
+				
+				<pre><code>Ocorreu um erro interno, tente novamente mais tarde.</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Evidência</font></font></th>
+		<td><pre><code>HTTP/1.1 500 Internal Server Error</code></pre></td>
+	</tr>
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Solução</font></font></th>
+		<td> 
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Revise o código-fonte desta página. </font><font style="vertical-align: inherit;">Implemente páginas de erro personalizadas. </font><font style="vertical-align: inherit;">Considere implementar um mecanismo para fornecer uma referência/identificador de erro exclusivo ao cliente (navegador) enquanto registra os detalhes no lado do servidor e não os expõe ao usuário.</font></font></p>
+ </td>
+	</tr>
+</tbody></table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				
+				
+				
+				  
+				 
+				
+				
+				
+				
+				<li id="alerts--risk-0-confidence-2">
+					<h3>
+						<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Risco</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="risk-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Informativo</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , </font></font><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Confiança</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> = </font></font><span class="confidence-level"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Médio </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
+					</h3>
+					<ol>
+						
+						<li class="alerts--site-li">
+							<h4>
+								<span class="site"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://localhost:8090 </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
+							</h4>
+							<ol>
+								
+								<li>
+									<h5>
+										<a href="file:///C:/Users/Marlon/2024-03-19-ZAP-Report-localhost.html#alert-type-1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fuzzer do agente do usuário </font></font></a> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(1)</font></font></span>
+									</h5>
+									<ol>
+										<li><details>
+												<summary>
+													<span class="request-method-n-url"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OBTER http://localhost:8090/</font></font></span>
+												</summary>
+												
+<table class="alerts-table">
+	<tbody><tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Etiquetas de alerta</font></font></th>
+		<td>
+			<ul class="alert-tags-list">
+				
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descrição do alerta</font></font></th>
+		<td> 
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Verifique se há diferenças na resposta com base no User Agent difuso (por exemplo, sites móveis, acesso como um rastreador de mecanismo de pesquisa). </font><font style="vertical-align: inherit;">Compara o código de status da resposta e o código hash do corpo da resposta com a resposta original.</font></font></p>
+ </td>
+	</tr>
+	
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Solicitar</font></font></th>
+		<td><details open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Linha de solicitação e seção de cabeçalho (603 bytes)</font></font></summary>
+				
+				<pre><code>GET http://localhost:8090/ HTTP/1.1<font></font>
+host: localhost:8090<font></font>
+Connection: keep-alive<font></font>
+Upgrade-Insecure-Requests: 1<font></font>
+user-agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)<font></font>
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7<font></font>
+Sec-Fetch-Site: none<font></font>
+Sec-Fetch-Mode: navigate<font></font>
+Sec-Fetch-User: ?1<font></font>
+Sec-Fetch-Dest: document<font></font>
+sec-ch-ua: "Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"<font></font>
+sec-ch-ua-mobile: ?0<font></font>
+sec-ch-ua-platform: "Windows"<font></font>
+Accept-Language: pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7<font></font>
+<font></font>
+</code></pre>
+				
+				
+			</details> <details class="request-body" open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Corpo da solicitação (0 bytes)</font></font></summary>
+				
+				<pre><code></code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Resposta</font></font></th>
+		<td><details open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Linha de status e seção de cabeçalho (576 bytes)</font></font></summary>
+				
+				<pre><code>HTTP/1.1 404 Not Found<font></font>
+Expires: 0<font></font>
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate<font></font>
+X-XSS-Protection: 1; mode=block<font></font>
+Pragma: no-cache<font></font>
+X-Frame-Options: DENY<font></font>
+Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com; frame-ancestors 'self'; form-action 'self';<font></font>
+Date: Tue, 19 Mar 2024 15:32:07 GMT<font></font>
+Connection: keep-alive<font></font>
+Vary: Origin<font></font>
+Vary: Access-Control-Request-Method<font></font>
+Vary: Access-Control-Request-Headers<font></font>
+X-Content-Type-Options: nosniff<font></font>
+Content-Type: text/html;charset=UTF-8<font></font>
+Content-Length: 275<font></font>
+Content-Language: pt-BR<font></font>
+<font></font>
+</code></pre>
+				
+				
+			</details> <details class="response-body" open="open">
+				<summary><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Corpo de resposta (275 bytes)</font></font></summary>
+				
+				<pre><code>&lt;html&gt;&lt;body&gt;&lt;h1&gt;Whitelabel Error Page&lt;/h1&gt;&lt;p&gt;This application has no explicit mapping for /error, so you are seeing this as a fallback.&lt;/p&gt;&lt;div id='created'&gt;Tue Mar 19 12:32:07 BRT 2024&lt;/div&gt;&lt;div&gt;There was an unexpected error (type=Not Found, status=404).&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</code></pre>
+				
+				
+			</details></td>
+	</tr>
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Parâmetro</font></font></th>
+		<td><pre><code>Cabeçalho do Agente de Usuário</code></pre></td>
+	</tr>
+	<tr>
+		<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ataque</font></font></th>
+		<td><pre><code>Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)</code></pre></td>
+	</tr>
+	
+	
+</tbody></table>
+
+											</details></li>
+									</ol>
+								</li>
+								
+							</ol>
+						</li>
+						
+					</ol>
+				</li>
+				
+				
+				
+				
+				  
+			</ol>
+		</section>
+
+		<section id="appendix" class="appendix">
+			<h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apêndice</font></font></h2>
+
+			<section id="alert-types" class="alert-types">
+				<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipos de alerta</font></font></h3>
+				<p class="alert-types-intro"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Esta seção contém informações adicionais sobre os tipos de alertas no relatório.</font></font></p>
+				<ol>
+					<li id="alert-type-0">
+						<h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Divulgação de erro de aplicativo</font></font></h4>
+						<table class="alert-types-table">
+							<tbody><tr>
+								<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fonte</font></font></th>
+								<td>
+									
+									   <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gerado por um scanner passivo </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">( </font></font><a href="https://www.zaproxy.org/docs/alerts/90022/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">revelação de erro de aplicativo</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )
+									</font></font></span>   
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID do CWE</font></font></th>
+								<td><a href="https://cwe.mitre.org/data/definitions/200.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">200</font></font></a></td>
+							</tr>
+							<tr>
+								<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID WASC</font></font></th>
+								<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">13</font></font></td>
+							</tr>
+							
+						</tbody></table>
+					</li>
+					<li id="alert-type-1">
+						<h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fuzzer do agente do usuário</font></font></h4>
+						<table class="alert-types-table">
+							<tbody><tr>
+								<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fonte</font></font></th>
+								<td>
+									
+									   <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">gerado por um scanner ativo </font></font></span> <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">( </font></font><a href="https://www.zaproxy.org/docs/alerts/10104/"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">User Agent Fuzzer</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> )
+									</font></font></span>   
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<th scope="row"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Referência</font></font></th>
+								<td>
+									<ol>
+										<li><a href="https://owasp.org/wstg"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://owasp.org/wstg</font></font></a></li>
+									</ol>
+								</td>
+							</tr>
+						</tbody></table>
+					</li>
+				</ol>
+			</section>
+		</section>
+		 
+	</main><div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: &#39;Google Sans&#39;, Arial, sans-serif;" data-id=""><div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd"><div class=" VIpgJd-yAWNEb-hvhgNd-l4eHX-i3jM8c"><img src="./Relatório de digitalização ZAP - Checkout PG - Snackhubpay (depois)_files/24px.svg" width="24" height="24" alt=""></div><div class=" VIpgJd-yAWNEb-hvhgNd-k77Iif-i3jM8c"><div class="VIpgJd-yAWNEb-hvhgNd-IuizWc" dir="ltr">Texto original</div><div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div></div><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr"><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr"><div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Avalie a tradução</div><div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">O feedback vai ser usado para ajudar a melhorar o Google Tradutor</div></div><div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução boa" aria-label="Tradução boa" aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg></span></button><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução ruim" aria-label="Tradução ruim" aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg></span></button></div></div><div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><form id="goog-gt-votingForm" action="file://translate.googleapis.com/translate_voting?client=te_lib" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl" id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans" id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe name="votingFrame" frameborder="0" src="./Relatório de digitalização ZAP - Checkout PG - Snackhubpay (depois)_files/saved_resource.html"></iframe></div></div></div>
+
+
+
+
+
+</body></html>
